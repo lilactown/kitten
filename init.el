@@ -9,6 +9,9 @@
 ;; Load keybindings
 (load! "keybinds.el")
 
+;; don't use tabs ever
+(setq-default indent-tabs-mode nil)
+
 ;; modal editing
 (use-package meow
   :config
