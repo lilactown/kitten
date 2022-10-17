@@ -8,6 +8,7 @@
 (defvar keybinds--buffer-prefix (kbd "C-c b"))
 (defvar keybinds--file-prefix (kbd "C-c f"))
 (defvar keybinds--magit-prefix (kbd "C-c g"))
+(defvar keybinds--search-prefix (kbd "C-c s"))
 (defvar keybinds--window-prefix (kbd "C-c w"))
 
 (global-set-key keybinds--execute-command 'execute-extended-command)
@@ -55,3 +56,11 @@
     map))
 
 (global-set-key keybinds--magit-prefix keybinds--magit-keymap)
+
+;; Searching
+(defvar keybinds--search-keymap
+  (let ((map (make-sparse-keymap)))
+    (define-key map "f" 'consult-ripgrep)
+    map))
+
+(global-set-key keybinds--search-prefix keybinds--search-keymap)
