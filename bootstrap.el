@@ -19,7 +19,3 @@
 
 (when (not (file-exists-p (expand-file-name "straight/versions/default.el" straight-base-dir)))
   (straight-freeze-versions))
-
-;; convenience function for loading files in this config repo
-(defun load! (file)
-  (load-file (expand-file-name file user-emacs-directory)))

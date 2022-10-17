@@ -1,6 +1,10 @@
+;; convenience function for loading files in this config repo
+(defun load! (file)
+  (load-file (expand-file-name file user-emacs-directory)))
+
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
-(load-file (expand-file-name "bootstrap.el" user-emacs-directory))
+(load! "bootstrap.el")
 
 ;; Load keybindings
 (load! "keybinds.el")
@@ -18,12 +22,12 @@
 ;; Language-specific packages
 (use-package org)
 (use-package markdown-mode)
+(use-package cider)
 
 ;; Color hex color codes so you can see the actual color.
 (use-package rainbow-mode)
 
 ;; Programming languages
-(use-package cider)
 (use-package rainbow-delimiters
   :hook ((cider-repl-mode
           clojurex-mode
