@@ -1,13 +1,14 @@
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
 (load-file (expand-file-name "bootstrap.el" user-emacs-directory))
-(load-file (expand-file-name "keybinds.el" user-emacs-directory))
-(load-file (expand-file-name "meow.el" user-emacs-directory))
+
+;; Load keybindings
+(load! "keybinds.el")
 
 ;; modal editing
 (use-package meow
   :config
-  (meow-setup)
+  (load! "meow.el")
   (meow-setup-indicator)
   (meow-global-mode 1))
 
@@ -63,24 +64,15 @@
   (selectrum-mode +1))
 
 (use-package embark
-;  :bind
-;  (("C-." . embark-act)         ;; pick some comfortable binding
-;   ;("C-;" . embark-dwim)        ;; good alternative: M-.
-;   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
   :init
-
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
-
   :config
-
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
-
 
 ;; Not a fan of trailing whitespace in source files, strip it out when saving.
 (add-hook 'before-save-hook
