@@ -16,7 +16,7 @@
 ;; Window managment
 (defvar keybinds--window-keymap
   (let ((map (make-sparse-keymap)))
-    (define-key map "k" 'delete-window)
+    (define-key map "d" 'delete-window)
     (define-key map "m" 'windmove-left)
     (define-key map "n" 'windmove-down)
     (define-key map "e" 'windmove-up)
@@ -30,7 +30,7 @@
 ;; Buffer management
 (defvar keybinds--buffer-keymap
  (let ((map (make-sparse-keymap)))
-    (define-key map "k" 'kill-buffer)
+    (define-key map "d" 'kill-buffer)
     (define-key map "b" 'switch-to-buffer)
     map))
 
@@ -49,6 +49,7 @@
 (defvar keybinds--magit-keymap
   (let ((map (make-sparse-keymap)))
     (define-key map "s" 'magit-status)
+    (define-key map "l" 'magit-log)
     map))
 
 (global-set-key keybinds--magit-prefix keybinds--magit-keymap)
