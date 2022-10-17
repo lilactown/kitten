@@ -61,6 +61,7 @@
 (defvar keybinds--search-keymap
   (let ((map (make-sparse-keymap)))
     (define-key map "f" 'consult-ripgrep)
+    (define-key map "b" 'consult-line)
     map))
 
 (global-set-key keybinds--search-prefix keybinds--search-keymap)

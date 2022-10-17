@@ -67,9 +67,6 @@
 (use-package consult)
 
 ;; Provides autocomplete minibuffer for completing-read
-;;(use-package selectrum
-;;  :config
-;;  (selectrum-mode +1))
 (use-package vertico
   :init
   (vertico-mode)
