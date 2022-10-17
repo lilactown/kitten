@@ -41,7 +41,10 @@
 
 ;; surrounding selections with parens
 (electric-pair-mode)
-(setq electric-pair-inhibit-predicate 'ignore)
+;; Disable in minibuffer https://emacs.stackexchange.com/a/29342
+(defun init--inhibit-electric-pair-mode (char)
+  (minibufferp))
+(setq electric-pair-inhibit-predicate #'init--inhibit-electric-pair-mode)
 (setq electric-pair-skip-self t)
 
 ;; Remove scroll bars when not needed and borders around them
