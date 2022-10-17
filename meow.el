@@ -1,12 +1,17 @@
 (require 'meow)
 
+;; Allows binding SPC g
 (setq meow-keypad-ctrl-meta-prefix nil)
 
-(setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh)
+;; Fall back to C-c if keybinding can't be found in default global map
+;; (makes it work with bind-key)
+(setq meow-keypad-leader-dispatch "C-c")
 
 ;;
 ;; Colemak-DH setup
 ;;
+
+(setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh)
 
 (meow-motion-overwrite-define-key
  ;; Use e to move up, n to move down.
