@@ -4,7 +4,7 @@
 
 (defvar keybinds--execute-command (kbd "C-c ;"))
 (defvar keybinds--embark-act (kbd "C-c ."))
-;(defvar keybinds--embark-prefix (kbd "C-c a"))
+(defvar keybinds--apropos (kbd "C-c a"))
 (defvar keybinds--buffer-prefix (kbd "C-c b"))
 (defvar keybinds--file-prefix (kbd "C-c f"))
 (defvar keybinds--magit-prefix (kbd "C-c g"))
@@ -12,6 +12,7 @@
 
 (global-set-key keybinds--execute-command 'execute-extended-command)
 (global-set-key keybinds--embark-act 'embark-act)
+(global-set-key keybinds--apropos 'consult-apropos)
 
 ;; Window managment
 (defvar keybinds--window-keymap
@@ -31,7 +32,8 @@
 (defvar keybinds--buffer-keymap
  (let ((map (make-sparse-keymap)))
     (define-key map "d" 'kill-buffer)
-    (define-key map "b" 'switch-to-buffer)
+    (define-key map "b" 'consult-buffer)
+    (define-key map "B" 'consult-project-buffer)
     map))
 
 (global-set-key keybinds--buffer-prefix keybinds--buffer-keymap)
