@@ -1,0 +1,6 @@
+/transient/
+/straight/
+/eln-cache/
+/auto-save-list/
+/.emacs.desktop
+*.lock
