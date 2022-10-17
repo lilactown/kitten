@@ -17,7 +17,8 @@
   (meow-global-mode 1))
 
 ;; Powerful Git integration.
-(use-package magit)
+(use-package magit
+  :commands magit-status)
 
 ;; Language-specific packages
 (use-package org)
