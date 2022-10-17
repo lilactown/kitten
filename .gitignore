@@ -4,3 +4,5 @@
 /auto-save-list/
 /.emacs.desktop
 *.lock
+/history
+/projects

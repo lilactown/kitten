@@ -18,11 +18,11 @@
 ;; Language-specific packages
 (use-package org)
 (use-package markdown-mode)
-;(use-package cider)
 
 ;; Color hex color codes so you can see the actual color.
 (use-package rainbow-mode)
 
+;; Programming languages
 (use-package cider)
 (use-package rainbow-delimiters
   :hook ((cider-repl-mode
@@ -59,10 +59,36 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package selectrum
-  :config
-  (selectrum-mode +1))
+;; Replacements for most completing-read functions
+(use-package consult)
 
+;; Provides autocomplete minibuffer for completing-read
+;;(use-package selectrum
+;;  :config
+;;  (selectrum-mode +1))
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+  )
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; You can think of embark-act as a keyboard-based version of a right-click contextual menu.
 (use-package embark
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -73,6 +99,15 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; Not a fan of trailing whitespace in source files, strip it out when saving.
 (add-hook 'before-save-hook
