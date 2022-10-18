@@ -73,11 +73,20 @@
  ("C-c e b" :eval/buffer)
  ("C-c e d" :eval/defun)
  ("C-c e e" :eval/last-sexp)
- ("C-c e p" :eval/pprint-expr))
+ ("C-c e m" :eval/macroexpand-last-sexp)
+ ("C-c e p" :eval/pprint-last-sexp))
 
 (reflex/provide-signals
- emacs-lisp-mode
+ emacs-lisp-mode-map
  (:eval/buffer eval-buffer)
  (:eval/defun eval-defun)
  (:eval/last-sexp eval-last-sexp)
- (:eval/pprint-expr pp-eval-expression))
+ (:eval/macroexpand-last-sexp pp-macroexpand-last-sexp)
+ (:eval/pprint-last-sexp pp-eval-last-sexp))
+
+;; REPL
+(reflex/bind-signals
+ global
+ ("C-c r '" :repl/jack-in)
+ ("C-c r c" :repl/connect)
+ ("C-c r s" :repl/switch-to))
