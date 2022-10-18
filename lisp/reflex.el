@@ -37,15 +37,7 @@
    bindings))
 
 (defmacro reflex/bind-signals (keymap &rest bindings)
-  (if (and (eq :prefix-map (car bindings))
-           (eq :prefix (caddr bindings)))
-      (let ((prefix-map (cadr bindings))
-            (prefix (cadddr bindings)))
-        `((defvar ,prefix-map)
-          (define-prefix-command ',prefix-map)
-          ;; TODO bind to prefix map (not mode) and then bind prefix key in mode
-          (reflex/-bind-signals ',keymap )))
-    (list 'reflex/-bind-signals (list 'quote keymap) (list 'quote bindings))))
+  (list 'reflex/-bind-signals (list 'quote keymap) (list 'quote bindings)))
 
 (defun reflex/provide-signal (signal target &optional keymap)
   (let ((keymap (or keymap 'global)))
