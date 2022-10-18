@@ -14,23 +14,13 @@
       (seq-map
        (lambda (x)
 	 (let ((keymap (car x))
-	       (target (a-get (cdr x) :target))
-	       (key (a-get (cdr x) :key)))
+	       (target (or (a-get (cdr x) :target) global-target))
+	       (key (or (a-get (cdr x) :key) global-key)))
 	   (let ((keymap (when (not (eq 'global keymap))
                            keymap)))
 
-             (cond
-              ((and target key)
-               ;;(print (list key target keymap))
-               (bind-key key target keymap))
-
-              ((and global-target key)
-               ;;(print (list key target keymap))
-               (bind-key key global-target keymap))
-
-              ((and target global-key)
-               ;;(print (list key target keymap))
-               (bind-key global-key target keymap))))))
+             (when (and target key)
+               (bind-key key target keymap)))))
        keymap->key))))
 
 (defun reflex/bind-signal (key signal &optional keymap)
