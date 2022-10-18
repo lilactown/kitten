@@ -2,6 +2,8 @@
 ;; global keybinds
 ;;
 
+;;(require 'reflex)
+
 (defvar keybinds--execute-command (kbd "C-c ;"))
 (defvar keybinds--embark-act (kbd "C-c ."))
 (defvar keybinds--apropos (kbd "C-c a"))
@@ -65,3 +67,14 @@
     map))
 
 (global-set-key keybinds--search-prefix keybinds--search-keymap)
+
+;; Evaluating
+(reflex/bind-signal "C-c e e" :eval/last-sexp)
+(reflex/bind-signal "C-c e b" :eval/buffer)
+(reflex/bind-signal "C-c e d" :eval/defun)
+(reflex/bind-signal "C-c e p" :eval/pprint-expr)
+
+(reflex/provide-signal :eval/buffer #'eval-buffer 'emacs-lisp-mode)
+(reflex/provide-signal :eval/defun #'eval-defun 'emacs-lisp-mode)
+(reflex/provide-signal :eval/last-sexp #'eval-last-sexp 'emacs-lisp-mode)
+(reflex/provide-signal :eval/pprint-expr #'pp-eval-expression 'emacs-lisp-mode)

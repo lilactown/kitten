@@ -28,7 +28,9 @@
 ;; Language-specific packages
 (use-package org)
 (use-package markdown-mode)
-(use-package cider)
+(use-package cider
+  :config
+  (load! "signals/cider.el"))
 
 ;; Color hex color codes so you can see the actual color.
 (use-package rainbow-mode)
