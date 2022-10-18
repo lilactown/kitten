@@ -61,12 +61,22 @@
 ;;   ("C-c e g" :foo/baz)))
 
 (defmacro reflex/bind-signals (mode &rest bindings)
-  (list 'reflex/-bind-signals (list 'quote mode) (list 'quote bindings)))
+  (if (and (eq :prefix-map (car bindings))
+           (eq :prefix (caddr bindings)))
+      (let ((prefix-map (cadr bindings))
+            (prefix (cadddr bindings)))
+        `((defvar ,prefix-map)
+          (define-prefix-command ',prefix-map)
+          ;; TODO bind to prefix map (not mode) and then bind prefix key in mode
+          (reflex/-bind-signals ',mode )))
+    (list 'reflex/-bind-signals (list 'quote mode) (list 'quote bindings))))
 
 ;;(reflex/bind-signals
 ;; global
-;; ("C-c e f" :foo/bar)
-;; ("C-c e f" :foo/baz))
+;; :prefix-map kitten/foo
+;; :prefix "C-c t"
+;; ("f" :foo/bar)
+;; ("f" :foo/baz))
 
 (defun reflex/provide-signal (signal target &optional mode)
   (let ((mode (or mode 'global)))
