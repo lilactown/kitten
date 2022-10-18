@@ -79,6 +79,15 @@
 
 ;; Provides autocomplete minibuffer for completing-read
 (use-package vertico
+  :straight '(vertico :files (:defaults "extensions/*")
+                      :includes (vertico-buffer
+                                 vertico-directory
+                                 vertico-flat
+                                 vertico-indexed
+                                 vertico-mouse
+                                 vertico-quick
+                                 vertico-repeat
+                                 vertico-reverse))
   :init
   (vertico-mode)
 
@@ -95,10 +104,31 @@
   ;; (setq vertico-cycle t)
   )
 
+;; Configure directory extension.
+(use-package vertico-directory
+  :after vertico
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
   (savehist-mode))
+
+;; Optionally use the `orderless' completion style.
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
 
 ;; You can think of embark-act as a keyboard-based version of a right-click contextual menu.
 (use-package embark
