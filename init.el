@@ -55,6 +55,8 @@
 (setq electric-pair-inhibit-predicate #'init--inhibit-electric-pair-mode)
 (setq electric-pair-skip-self t)
 
+(set-frame-font "Cascadia Mono PL-13")
+
 ;; Remove scroll bars when not needed and borders around them
 (fringe-mode 0)
 
