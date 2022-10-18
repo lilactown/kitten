@@ -69,12 +69,16 @@
 (global-set-key keybinds--search-prefix keybinds--search-keymap)
 
 ;; Evaluating
-(reflex/bind-signal "C-c e e" :eval/last-sexp)
-(reflex/bind-signal "C-c e b" :eval/buffer)
-(reflex/bind-signal "C-c e d" :eval/defun)
-(reflex/bind-signal "C-c e p" :eval/pprint-expr)
+(reflex/bind-signals
+ global
+ ("C-c e b" :eval/buffer)
+ ("C-c e d" :eval/defun)
+ ("C-c e e" :eval/last-sexp)
+ ("C-c e p" :eval/pprint-expr))
 
-(reflex/provide-signal :eval/buffer #'eval-buffer 'emacs-lisp-mode)
-(reflex/provide-signal :eval/defun #'eval-defun 'emacs-lisp-mode)
-(reflex/provide-signal :eval/last-sexp #'eval-last-sexp 'emacs-lisp-mode)
-(reflex/provide-signal :eval/pprint-expr #'pp-eval-expression 'emacs-lisp-mode)
+(reflex/provide-signals
+ emacs-lisp-mode
+ (:eval/buffer eval-buffer)
+ (:eval/defun eval-defun)
+ (:eval/last-sexp eval-last-sexp)
+ (:eval/pprint-expr pp-eval-expression))
