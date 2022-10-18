@@ -2,6 +2,7 @@
 
 ;; Allows binding SPC g
 (setq meow-keypad-ctrl-meta-prefix nil)
+(setq meow-keypad-meta-prefix nil)
 
 ;; Fall back to C-c if keybinding can't be found in default global map
 ;; (makes it work with bind-key)
