@@ -2,11 +2,11 @@
 (defun load! (file)
   (load-file (expand-file-name file user-emacs-directory)))
 
+(push "~/.config/emacs/lisp" load-path)
+
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
 (load! "bootstrap.el")
-
-(load! "reflex.el")
 
 ;; Load keybindings
 (load! "keybinds.el")
