@@ -2,71 +2,55 @@
 ;; global keybinds
 ;;
 
-;;(require 'reflex)
+(require 'bind-key)
+(require 'reflex)
 
-(defvar keybinds--execute-command (kbd "C-c ;"))
-(defvar keybinds--embark-act (kbd "C-c ."))
-(defvar keybinds--apropos (kbd "C-c a"))
-(defvar keybinds--buffer-prefix (kbd "C-c b"))
-(defvar keybinds--file-prefix (kbd "C-c f"))
-(defvar keybinds--magit-prefix (kbd "C-c g"))
-(defvar keybinds--search-prefix (kbd "C-c s"))
-(defvar keybinds--window-prefix (kbd "C-c w"))
-
-(global-set-key keybinds--execute-command 'execute-extended-command)
-(global-set-key keybinds--embark-act 'embark-act)
-(global-set-key keybinds--apropos 'consult-apropos)
+;; global commands
+(bind-keys
+ ("C-c ;" . execute-extended-command)
+ ("C-c ." . embark-act)
+ ("C-c a" . consult-apropos))
 
 ;; Window managment
-(defvar keybinds--window-keymap
-  (let ((map (make-sparse-keymap)))
-    (define-key map "d" 'delete-window)
-    (define-key map "m" 'windmove-left)
-    (define-key map "n" 'windmove-down)
-    (define-key map "e" 'windmove-up)
-    (define-key map "i" 'windmove-right)
-    (define-key map "/" 'split-window-horizontally)
-    (define-key map "-" 'split-window-vertically)
-    map))
-
-(global-set-key keybinds--window-prefix keybinds--window-keymap)
+(bind-keys
+ :prefix-map kitten/window
+ :prefix "C-c w"
+ ("d" . delete-window)
+ ("m" . windmove-left)
+ ("n" . windmove-down)
+ ("e" . windmove-up)
+ ("i" . windmove-right)
+ ("/" . split-window-horizontally)
+ ("-" . split-window-vertically))
 
 ;; Buffer management
-(defvar keybinds--buffer-keymap
- (let ((map (make-sparse-keymap)))
-    (define-key map "d" 'kill-buffer)
-    (define-key map "b" 'consult-buffer)
-    (define-key map "B" 'consult-project-buffer)
-    map))
-
-(global-set-key keybinds--buffer-prefix keybinds--buffer-keymap)
+(bind-keys
+ :prefix-map kitten/buffer
+ :prefix "C-c b"
+ ("d" . kill-buffer)
+ ("b" . consult-buffer)
+ ("B" . consult-project-buffer))
 
 ;; File management
-(defvar keybinds--file-keymap
-  (let ((map (make-sparse-keymap)))
-    (define-key map "f" 'find-file)
-    (define-key map "s" 'save-buffer)
-    map))
-
-(global-set-key keybinds--file-prefix keybinds--file-keymap)
+(bind-keys
+ :prefix-map kitten/file
+ :prefix "C-c f"
+ ("f" . find-file)
+ ("s" . save-buffer))
 
 ;; Magit
-(defvar keybinds--magit-keymap
-  (let ((map (make-sparse-keymap)))
-    (define-key map "s" 'magit-status)
-    (define-key map "l" 'magit-log)
-    map))
-
-(global-set-key keybinds--magit-prefix keybinds--magit-keymap)
+(bind-keys
+ :prefix-map kitten/magit
+ :prefix "C-c g"
+ ("s" . magit-status)
+ ("l" . magit-log))
 
 ;; Searching
-(defvar keybinds--search-keymap
-  (let ((map (make-sparse-keymap)))
-    (define-key map "f" 'consult-ripgrep)
-    (define-key map "b" 'consult-line)
-    map))
-
-(global-set-key keybinds--search-prefix keybinds--search-keymap)
+(bind-keys
+ :prefix-map kitten/search
+ :prefix "C-c s"
+ ("f" . consult-ripgrep)
+ ("b" . consult-line))
 
 ;; Evaluating
 (reflex/bind-signals
