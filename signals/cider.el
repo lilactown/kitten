@@ -2,6 +2,7 @@
 (require 'bind-key)
 
 (defvar kitten-clojure/connect (make-sparse-keymap))
+(define-prefix-command 'kitten-clojure/connect)
 
 (bind-keys
  :map kitten-clojure/connect
