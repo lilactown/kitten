@@ -21,8 +21,7 @@
        (lambda (x)
 	 (let ((mode (car x))
 	       (target (a-get (cdr x) :target))
-	       (key (a-get (cdr x) :key))
-               )
+	       (key (a-get (cdr x) :key)))
 	   (let ((keymap (when (not (eq 'global mode))
                            (intern (concat (symbol-name mode) "-map")))))
 
@@ -48,10 +47,42 @@
     (setq reflex/signal-map (a-assoc-in reflex/signal-map (list signal mode :key) key))
     (reflex/-install-signal-binding! signal)))
 
+(defun reflex/-bind-signals (mode bindings)
+  (seq-map
+   (lambda (x)
+     (let ((key (car x))
+           (signal (cadr x)))
+       (reflex/bind-signal key signal mode)))
+   bindings))
+
+;;(reflex/-bind-signals
+;; 'global
+;; '(("C-c e f" :foo/bar)
+;;   ("C-c e g" :foo/baz)))
+
+(defmacro reflex/bind-signals (mode &rest bindings)
+  (list 'reflex/-bind-signals (list 'quote mode) (list 'quote bindings)))
+
+;;(reflex/bind-signals
+;; global
+;; ("C-c e f" :foo/bar)
+;; ("C-c e f" :foo/baz))
+
 (defun reflex/provide-signal (signal target &optional mode)
   (let ((mode (or mode 'global)))
     (setq reflex/signal-map (a-assoc-in reflex/signal-map (list signal mode :target) target))
     (reflex/-install-signal-binding! signal)))
+
+(defun reflex/-provide-signals (mode bindings)
+  (seq-map
+   (lambda (x)
+     (let ((signal (car x))
+           (target (cadr x)))
+       (reflex/provide-signal signal target mode)))
+   bindings))
+
+(defmacro reflex/provide-signals (mode &rest signals)
+  (list 'reflex/-provide-signals (list 'quote mode) (list 'quote signals)))
 
 ;;(reflex/bind-signal "C-c e b" :eval/buffer)
 ;;(reflex/bind-signal "C-c e e" :eval/last-sexp)
