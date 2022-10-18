@@ -76,7 +76,11 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(use-package all-the-icons
+  :if (display-graphic-p))
+
 (use-package doom-modeline
+  :after all-the-icons
   :init (doom-modeline-mode 1))
 
 ;; Replacements for most completing-read functions
