@@ -6,6 +6,8 @@
 ;; can follow the same pattern if you want to split out other bits of config.
 (load! "bootstrap.el")
 
+(load! "reflex.el")
+
 ;; Load keybindings
 (load! "keybinds.el")
 
