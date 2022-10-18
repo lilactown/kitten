@@ -90,3 +90,9 @@
  ("C-c r '" :repl/jack-in)
  ("C-c r c" :repl/connect)
  ("C-c r s" :repl/switch-to))
+
+;; Help in IDE
+(reflex/bind-signals
+ global
+ ("C-c m h h" :help/doc)
+ ("C-c m h a" :help/apropos))

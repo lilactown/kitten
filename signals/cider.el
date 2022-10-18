@@ -22,7 +22,9 @@
  (:repl/connect kitten-clojure/connect)
  (:repl/quit sesman-quit)
  (:repl/switch-to cider-switch-to-repl-buffer)
- )
+
+ (:help/doc cider-doc)
+ (:help/apropos cider-apropos))
 
 
 (reflex/provide-signals
