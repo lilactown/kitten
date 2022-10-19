@@ -3,6 +3,7 @@
   (load-file (expand-file-name file user-emacs-directory)))
 
 (push "~/.config/emacs/lisp" load-path)
+(push "~/.config/emacs/modules" load-path)
 
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
@@ -31,11 +32,8 @@
 ;; Language-specific packages
 (use-package org)
 (use-package markdown-mode)
-(use-package flycheck-clj-kondo)
-(use-package cider
-  :config
-  (require 'flycheck-clj-kondo)
-  (load! "signals/cider.el"))
+
+(require 'kitten-clojure)
 
 ;; Color hex color codes so you can see the actual color.
 (use-package rainbow-mode)
@@ -54,19 +52,12 @@
 
 ;; surrounding selections with parens
 (electric-pair-mode)
+
 ;; Disable in minibuffer https://emacs.stackexchange.com/a/29342
 (defun init--inhibit-electric-pair-mode (char)
   (minibufferp))
 (setq electric-pair-inhibit-predicate #'init--inhibit-electric-pair-mode)
 (setq electric-pair-skip-self t)
-
-(use-package lsp-mode
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (clojure-mode . lsp)
-         ;; if you want which-key integration
-         ;;(lsp-mode . lsp-enable-which-key-integration)
-         )
-  :commands (lsp lsp-deferred))
 
 ;; Misc
 (set-frame-font "Cascadia Mono PL-13")

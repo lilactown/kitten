@@ -1,6 +1,19 @@
 (require 'reflex)
 (require 'bind-key)
 
+(use-package flycheck-clj-kondo)
+(use-package cider
+  :config
+  (require 'flycheck-clj-kondo))
+
+(use-package lsp-mode
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (clojure-mode . lsp)
+         ;; if you want which-key integration
+         ;;(lsp-mode . lsp-enable-which-key-integration)
+         )
+  :commands (lsp lsp-deferred))
+
 (defvar kitten-clojure/connect (make-sparse-keymap))
 (define-prefix-command 'kitten-clojure/connect)
 
@@ -32,3 +45,6 @@
  (:repl/jack-in sesman-start)
  (:repl/quit sesman-quit)
  (:repl/interrupt cider-interrupt))
+
+
+(provide 'kitten-clojure)
