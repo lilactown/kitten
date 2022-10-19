@@ -14,6 +14,9 @@
 
 (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh)
 
+(setq meow-mode-state-list (cons '(dashboard-mode . normal)
+                                 meow-mode-state-list))
+
 (meow-motion-overwrite-define-key
  ;; Use e to move up, n to move down.
  ;; Since special modes usually use n to move down, we only overwrite e here.

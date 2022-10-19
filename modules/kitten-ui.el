@@ -27,6 +27,18 @@
   :after all-the-icons
   :init (doom-modeline-mode 1))
 
+;; dim buffers that aren't visiting a file
+(use-package solaire-mode
+  :init (solaire-global-mode +1))
+
+;; show a dashboard on startup
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-banner-logo-title "Welcome to kitten, the cutest feline Emacs")
+  (setq dashboard-center-content t))
+
 ;; Enabling desktop-save-mode will save and restore all buffers between sessions
 (setq desktop-restore-frames nil)
 (desktop-save-mode 1)
