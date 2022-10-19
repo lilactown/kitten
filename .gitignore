@@ -6,3 +6,6 @@
 *.lock
 /history
 /projects
+/projectile-bookmarks.eld
+/recentf
+/.lsp-session-v1
