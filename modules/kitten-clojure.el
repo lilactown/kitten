@@ -42,7 +42,7 @@
  (:eval/defun cider-eval-defun-at-point)
  (:eval/last-sexp cider-eval-last-sexp)
  (:eval/macroexpand-last-sexp cider-macroexpand-all)
- (:eval/pprint-last-sexp cider-eval-last-sexp)
+ (:eval/pprint-last-sexp cider-pprint-eval-last-sexp)
  (:eval/replace-last-sexp cider-eval-last-sexp-and-replace)
 
  (:repl/jack-in sesman-start)
