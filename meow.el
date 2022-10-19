@@ -68,6 +68,7 @@
  '("I" . meow-right-expand)
  '("j" . meow-join)
  '("k" . meow-kill)
+ '("K" . meow-paren-mode)
  '("l" . meow-line)
  '("L" . meow-goto-line)
  '("h" . meow-mark-word)
