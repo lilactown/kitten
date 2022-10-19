@@ -25,11 +25,16 @@
 (use-package magit
   :commands magit-status)
 
+(use-package flycheck
+  :init (global-flycheck-mode))
+
 ;; Language-specific packages
 (use-package org)
 (use-package markdown-mode)
+(use-package flycheck-clj-kondo)
 (use-package cider
   :config
+  (require 'flycheck-clj-kondo)
   (load! "signals/cider.el"))
 
 ;; Color hex color codes so you can see the actual color.
