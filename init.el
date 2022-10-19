@@ -22,9 +22,7 @@
   (meow-setup-indicator)
   (meow-global-mode 1))
 
-;; Powerful Git integration.
-(use-package magit
-  :commands magit-status)
+(require 'kitten-git)
 
 (use-package flycheck
   :init (global-flycheck-mode))
