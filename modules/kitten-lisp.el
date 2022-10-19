@@ -31,20 +31,30 @@
 
 (meow-define-keys 'paren
   '("<escape>" . meow-normal-mode)
-  '("i" . sp-forward-sexp)
+  '("<backspace>" . sp-backward-unwrap-sexp)
+
+  '("l" . sp-end-of-sexp)
+  '("j" . sp-beginning-of-sexp)
   '("m" . sp-backward-sexp)
   '("n" . sp-down-sexp)
   '("e" . sp-up-sexp)
+  '("i" . sp-forward-sexp)
+  '("k" . sp-kill-sexp)
+
+  '("w" . sp-select-next-thing)
+  '("b" . sp-select-previous-thing)
+  '("a" . meow-append)
+  '("r" . sp-raise-sexp)
   '("s" . sp-forward-slurp-sexp)
   '("t" . sp-forward-barf-sexp)
   '("S" . sp-backward-barf-sexp)
   '("T" . sp-backward-slurp-sexp)
-  '("r" . sp-raise-sexp)
-  '("u" . meow-undo))
+  '("g" . meow-cancel-selection)
+  '("u" . meow-undo)
 
-(require 'reflex)
-
-(reflex/provide-signal :state/lisp meow-paren-mode)
+  '("[" . sp-wrap-square)
+  '("{" . sp-wrap-curly)
+  '("(" . sp-wrap-round))
 
 ;; Color hex color codes so you can see the actual color.
 (use-package rainbow-mode)
