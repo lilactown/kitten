@@ -35,6 +35,8 @@
 
   '("l" . sp-end-of-sexp)
   '("j" . sp-beginning-of-sexp)
+  '("u" . meow-undo)
+  '("y" . meow-save)
   '("m" . sp-backward-sexp)
   '("n" . sp-down-sexp)
   '("e" . sp-up-sexp)
@@ -43,6 +45,7 @@
 
   '("w" . sp-select-next-thing)
   '("b" . sp-select-previous-thing)
+  '("p" . meow-yank)
   '("a" . meow-append)
   '("r" . sp-raise-sexp)
   '("s" . sp-forward-slurp-sexp)
@@ -50,7 +53,6 @@
   '("S" . sp-backward-barf-sexp)
   '("T" . sp-backward-slurp-sexp)
   '("g" . meow-cancel-selection)
-  '("u" . meow-undo)
 
   '("[" . sp-wrap-square)
   '("{" . sp-wrap-curly)
