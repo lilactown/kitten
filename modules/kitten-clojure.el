@@ -7,6 +7,8 @@
 
 (require 'bind-key)
 
+(use-package flycheck
+  :init (global-flycheck-mode))
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
