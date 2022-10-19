@@ -31,10 +31,7 @@
 (require 'kitten-git)
 (require 'kitten-lisp)
 (require 'kitten-clojure)
-
-
-(use-package projectile
-  :init (projectile-mode +1))
+(require 'kitten-project)
 
 ;; Replacements for most completing-read functions
 (use-package consult)
