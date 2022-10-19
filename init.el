@@ -31,11 +31,11 @@
 (use-package org)
 (use-package markdown-mode)
 
-(require 'kitten-clojure)
 
 
 ;; Programming languages
 (require 'kitten-lisp)
+(require 'kitten-clojure)
 
 ;; Misc
 (set-frame-font "Cascadia Mono PL-13")

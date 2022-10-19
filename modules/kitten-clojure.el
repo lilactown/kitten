@@ -1,7 +1,21 @@
+;;; kitten-clojure.el --- Clojure config for kitten -*- lexical-binding: t -*-
+;;; Commentary:
+;; Package-Requires: ((use-package) (cider) (flycheck) (lsp-mode))
+;;; Code:
+
 (require 'reflex)
+
 (require 'bind-key)
 
 (use-package flycheck-clj-kondo)
+
+(use-package clojure-mode
+  :magic ("^#![^\n]*/\\(clj\\|clojure\\|bb\\|lumo\\)" . clojure-mode)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.ednl$" . clojure-mode))
+  :config
+  (setq clojure-toplevel-inside-comment-form t))
+
 (use-package cider
   :config
   (require 'flycheck-clj-kondo))
@@ -48,3 +62,5 @@
 
 
 (provide 'kitten-clojure)
+
+;;; kitten-clojure.el ends here
