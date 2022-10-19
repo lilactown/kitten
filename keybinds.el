@@ -68,7 +68,7 @@
  ("b" . consult-line))
 
 ;; project kitchen sink
-(bind-key "C-c p" projectile-command-map)
+(bind-key "C-c p" 'projectile-command-map)
 
 ;; Evaluating
 (reflex/bind-signals
