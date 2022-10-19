@@ -60,6 +60,15 @@
 (setq electric-pair-inhibit-predicate #'init--inhibit-electric-pair-mode)
 (setq electric-pair-skip-self t)
 
+(use-package lsp-mode
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (clojure-mode . lsp)
+         ;; if you want which-key integration
+         ;;(lsp-mode . lsp-enable-which-key-integration)
+         )
+  :commands (lsp lsp-deferred))
+
+;; Misc
 (set-frame-font "Cascadia Mono PL-13")
 
 ;; Remove scroll bars when not needed and borders around them
