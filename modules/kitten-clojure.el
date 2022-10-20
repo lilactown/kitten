@@ -16,7 +16,11 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.ednl$" . clojure-mode))
   :config
-  (setq clojure-toplevel-inside-comment-form t))
+  (setq clojure-toplevel-inside-comment-form t)
+  (bind-keys
+   :map clojure-mode-map
+   ;; disable vertical aligning of forms on a shortcut i accidentally press a lot
+   ("C-c SPC" . nil)))
 
 (use-package cider
   :config
