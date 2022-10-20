@@ -92,6 +92,7 @@
  global
  ("C-c r '" :repl/jack-in)
  ("C-c r c" :repl/connect)
+ ("C-c r l" :repl/clear)
  ("C-c r q" :repl/quit)
  ("C-c r s" :repl/switch-to))
 

@@ -62,9 +62,10 @@
 
 (reflex/provide-signals
  cider-repl-mode-map
+ (:repl/clear cider-repl-clear-buffer)
+ (:repl/interrupt cider-interrupt)
  (:repl/jack-in sesman-start)
- (:repl/quit sesman-quit)
- (:repl/interrupt cider-interrupt))
+ (:repl/quit sesman-quit))
 
 
 (provide 'kitten-clojure)
