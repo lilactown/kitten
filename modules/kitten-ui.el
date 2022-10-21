@@ -7,7 +7,7 @@
 ;; set frame borders
 (modify-all-frames-parameters
  '((right-divider-width . 0)
-   (internal-border-width . 5)))
+   (internal-border-width . 1)))
 
 ;; minimal window divider
 (dolist (face '(window-divider
