@@ -1,3 +1,12 @@
+;;; reflex.el --- Manage all your key bindings in one place
+
+;;; Commentary:
+
+;; reflex helps manage all your key bindings in one place by bindings keys to
+;; _capabilities_, not functions.
+
+;;; Code:
+
 (use-package a)
 
 (require 'a)
@@ -5,7 +14,7 @@
 (require 'seq)
 
 (defvar reflex/signal-map nil
-  "signal->keymap->key+command")
+  "signal->keymap->key+command.")
 
 (defun reflex/-install-signal-binding! (signal)
   (when-let ((keymap->key (a-get reflex/signal-map signal)))
@@ -56,3 +65,5 @@
   (list 'reflex/-provide-signals (list 'quote keymap) (list 'quote signals)))
 
 (provide 'reflex)
+
+;;; reflex.el ends here

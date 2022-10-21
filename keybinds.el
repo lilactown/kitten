@@ -1,6 +1,10 @@
-;;
-;; global keybinds
-;;
+;;; keybinds.el --- Global keybindings
+
+;;; Commentary:
+
+;; Global keybindings
+
+;;; Code:
 
 (require 'bind-key)
 (require 'reflex)
@@ -102,3 +106,5 @@
  global
  ("C-c m h h" :help/doc)
  ("C-c m h a" :help/apropos))
+
+;;; keybinds.el ends here
