@@ -9,17 +9,8 @@
  '((right-divider-width . 0)
    (internal-border-width . 0)))
 
-;; minimal window divider
-(dolist (face '(window-divider
-                window-divider-first-pixel
-                window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
-
-;; idk actually
-(set-face-background 'fringe (face-attribute 'default :background))
-
 (global-display-line-numbers-mode)
+(column-number-mode)
 
 ;; don't constantly change the width of the buffer while scrolling
 (setq display-line-numbers-grow-only t)
