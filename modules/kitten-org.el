@@ -4,9 +4,15 @@
   (setq org-directory "~/org")
   (setq org-agenda-files (list "inbox.org" "agenda.org"))
   (setq org-capture-templates
-       `(("i" "Inbox" entry  (file "inbox.org")
-        ,(concat "* TODO %?\n"
-                 "/Entered on/ %U"))))
+       `(("i" "Inbox" entry (file "inbox.org")
+          ,(concat "* TODO %?\n"
+                   "/Entered on/ %U"))
+         ("m" "Meeting" entry (file+headline "agenda.org" "Future")
+           ,(concat "* %? :meeting:\n"
+                    "<%<%Y-%m-%d %a %H:00>>"))
+         ("n" "Note" entry  (file "notes.org")
+          ,(concat "* Note (%a)\n"
+                   "/Entered on/ %U\n" "\n" "%?"))))
 
   ;; Use full window for org-capture
   (add-hook 'org-capture-mode-hook 'delete-other-windows)
