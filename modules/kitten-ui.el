@@ -2,12 +2,12 @@
 (set-frame-font "Cascadia Mono PL-13")
 
 ;; Remove scroll bars when not needed and borders around them
-(fringe-mode 0)
+(fringe-mode -1)
 
 ;; set frame borders
 (modify-all-frames-parameters
  '((right-divider-width . 0)
-   (internal-border-width . 1)))
+   (internal-border-width . 0)))
 
 ;; minimal window divider
 (dolist (face '(window-divider
@@ -20,6 +20,9 @@
 (set-face-background 'fringe (face-attribute 'default :background))
 
 (global-display-line-numbers-mode)
+
+;; don't constantly change the width of the buffer while scrolling
+(setq display-line-numbers-grow-only t)
 
 (use-package doom-themes
   :config
@@ -69,6 +72,9 @@
 
 ;; hide toolbar
 (tool-bar-mode -1)
+
+(scroll-bar-mode -1)
+
 
 ;; Sets `ns-transparent-titlebar' and `ns-appearance' frame parameters so window
 ;; borders will match the enabled theme.
