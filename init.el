@@ -23,9 +23,9 @@
   (meow-global-mode 1))
 
 (require 'kitten-ui)
+(require 'kitten-org)
 
 ;; Programming languages
-(use-package org)
 (use-package markdown-mode)
 
 (require 'kitten-git)

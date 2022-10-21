@@ -4,6 +4,21 @@
 ;; Remove scroll bars when not needed and borders around them
 (fringe-mode 0)
 
+;; set frame borders
+(modify-all-frames-parameters
+ '((right-divider-width . 0)
+   (internal-border-width . 5)))
+
+;; minimal window divider
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+
+;; idk actually
+(set-face-background 'fringe (face-attribute 'default :background))
+
 (global-display-line-numbers-mode)
 
 (use-package doom-themes
@@ -48,6 +63,9 @@
 
 ;; Visit files opened outside of Emacs in existing frame, not a new one
 (setq ns-pop-up-frames nil)
+
+;; hide menu bar
+(menu-bar-mode -1)
 
 ;; hide toolbar
 (tool-bar-mode -1)
