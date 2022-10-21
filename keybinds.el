@@ -8,8 +8,7 @@
 ;; global commands
 (bind-keys
  ("C-c ;" . execute-extended-command)
- ("C-c ." . embark-act)
- ("C-c a" . consult-apropos))
+ ("C-c ." . embark-act))
 
 ;; Window managment
 (bind-keys
@@ -64,8 +63,10 @@
 (bind-keys
  :prefix-map kitten/search
  :prefix "C-c s"
- ("f" . consult-ripgrep)
- ("b" . consult-line))
+ ("a" . consult-apropos)
+ ("f" . consult-find)
+ ("g" . consult-ripgrep)
+ ("l" . consult-line))
 
 ;; project kitchen sink
 (bind-key "C-c p" 'projectile-command-map)
