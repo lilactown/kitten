@@ -1,3 +1,11 @@
+;;; kitten-meow.el --- meow customizations
+
+;;; Commentary:
+
+;; Customizes meow with the colemak-dh key map and leader key config
+
+;;; Code:
+
 (require 'meow)
 
 ;; Allows binding SPC g
@@ -97,3 +105,7 @@
  '("z" . meow-pop-selection)
  '("'" . repeat)
  '("<escape>" . ignore))
+
+(provide 'kitten-meow)
+
+;;; kitten-meow.el ends here

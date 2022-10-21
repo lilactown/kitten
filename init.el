@@ -1,3 +1,4 @@
+
 ;;; init.el --- Initialize Emacs
 
 ;;; Commentary: N/A
@@ -24,7 +25,7 @@
 ;; modal editing
 (use-package meow
   :config
-  (load! "meow.el")
+  (require 'kitten-meow)
   (meow-setup-indicator)
   (meow-global-mode 1))
 
