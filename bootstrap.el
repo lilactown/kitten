@@ -1,4 +1,8 @@
-;; Install the Straight package manager
+;;; bootstrap.el --- Install the Straight package manager
+
+;;; Commentary: N/A
+
+;;; Code:
 
 (defvar bootstrap-version)
 
@@ -19,3 +23,5 @@
 
 (when (not (file-exists-p (expand-file-name "straight/versions/default.el" straight-base-dir)))
   (straight-freeze-versions))
+
+;;; bootstrap.el ends here

@@ -1,3 +1,9 @@
+;;; init.el --- Initialize Emacs
+
+;;; Commentary: N/A
+
+;;; Code:
+
 ;; convenience function for loading files in this config repo
 (defun load! (file)
   (load-file (expand-file-name file user-emacs-directory)))
@@ -147,3 +153,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;;; init.el ends here

@@ -49,12 +49,14 @@
               (kill-buffer)))
       (message "Not a file visiting buffer!"))))
 
+;; Files
 (bind-keys
  :prefix-map kitten/file
  :prefix "C-c f"
+ ("d" . delete-file-and-buffer)
  ("f" . find-file)
- ("s" . save-buffer)
- ("d" . delete-file-and-buffer))
+ ("r" . rename-file)
+ ("s" . save-buffer))
 
 ;; Magit
 (bind-keys
