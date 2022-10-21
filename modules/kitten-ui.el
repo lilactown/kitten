@@ -11,6 +11,7 @@
 
 (global-display-line-numbers-mode)
 (column-number-mode)
+(size-indication-mode)
 
 ;; don't constantly change the width of the buffer while scrolling
 (setq display-line-numbers-grow-only t)
