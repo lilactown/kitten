@@ -11,7 +11,7 @@
 
 ;; global commands
 (bind-keys
- ("C-c ;" . execute-extended-command)
+ ("C-c SPC" . execute-extended-command)
  ("C-c ." . embark-act))
 
 ;; Window managment
@@ -108,5 +108,13 @@
  global
  ("C-c m h h" :help/doc)
  ("C-c m h a" :help/apropos))
+
+;; Org mode
+(bind-keys
+ :prefix-map kitten/notes
+ :prefix "C-c n"
+ ("a" . org-agenda)
+ ("c" . org-capture)
+ ("i" . org-capture-inbox))
 
 ;;; keybinds.el ends here
