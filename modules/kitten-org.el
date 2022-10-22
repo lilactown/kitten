@@ -1,8 +1,11 @@
+(require 'bind-key)
+(require 'reflex)
+
 (use-package org
   :init
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-directory "~/org")
-  (setq org-agenda-files (list "inbox.org" "agenda.org"))
+  (setq org-agenda-files (list "inbox.org" "agenda.org" "notes.org" "projects.org"))
   (setq org-capture-templates
        `(("i" "Inbox" entry (file "inbox.org")
           ,(concat "* TODO %?\n"
@@ -14,12 +17,78 @@
           ,(concat "* Note (%a)\n"
                    "/Entered on/ %U\n" "\n" "%?"))))
 
+  ;; TODO
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+  (defun log-todo-next-creation-date (&rest ignore)
+    "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+    (when (and (string= (org-get-todo-state) "NEXT")
+               (not (org-entry-get nil "ACTIVATED")))
+      (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+
+  (setq org-log-done 'time)
+
+  (add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
+
   ;; Use full window for org-capture
   (add-hook 'org-capture-mode-hook 'delete-other-windows)
   (defun org-capture-inbox ()
     (interactive)
     (call-interactively 'org-store-link)
-    (org-capture nil "i")))
+    (org-capture nil "i"))
+
+  ;; set up refiling behavior
+  (setq org-refile-targets
+        '(("projects.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+
+  ;; agenda
+  (setq org-agenda-custom-commands
+      '(("g" "Get Things Done (GTD)"
+         ((agenda ""
+                  ((org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'deadline))
+                   (org-deadline-warning-days 0)))
+          (todo "NEXT"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                 (org-agenda-overriding-header "\nTasks\n")))
+          (agenda nil
+                  ((org-agenda-entry-types '(:deadline))
+                   (org-agenda-format-date "")
+                   (org-deadline-warning-days 7)
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
+                   (org-agenda-overriding-header "\nDeadlines")))
+          (tags-todo "inbox"
+                     ((org-agenda-prefix-format "  %?-12t% s")
+                      (org-agenda-overriding-header "\nInbox\n")))
+          (tags "CLOSED>=\"<today>\""
+                ((org-agenda-overriding-header "\nCompleted today\n"))))))))
+
+
+(defvar kitten-mode/org (make-sparse-keymap))
+(define-prefix-command 'kitten-mode/org)
+
+(bind-keys
+ :map kitten-mode/org
+ ("RET" . org-meta-return)
+ ("c i" . org-clock-in)
+ ("c o" . org-clock-out)
+ ("r" . org-refile)
+ ("u e" . org-set-effort)
+ ("u s" . org-update-statistics-cookies)
+ ("u t" . (lambda (&optional arg)
+            (interactive "P")
+            (doom-modeline-mode -1)
+            (org-set-tags-command arg)
+            (doom-modeline-mode 1)) ))
+
+(reflex/provide-signal :mode/major kitten-mode/org org-mode-map)
+
 (use-package org-modern
   :init
   (setq
