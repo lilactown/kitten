@@ -10,7 +10,7 @@
 (require 'reflex)
 
 ;; global commands
-(bind-keys
+(bind-keys*
  ("C-c SPC" . execute-extended-command)
  ("C-c ." . embark-act))
 
@@ -116,5 +116,8 @@
  ("a" . org-agenda)
  ("c" . org-capture)
  ("i" . org-capture-inbox))
+
+;; Major mode specific
+(reflex/bind-signal "C-c m" :mode/major)
 
 ;;; keybinds.el ends here
