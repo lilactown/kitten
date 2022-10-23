@@ -50,8 +50,8 @@
   (setq dashboard-center-content t))
 
 ;; Enabling desktop-save-mode will save and restore all buffers between sessions
-(setq desktop-restore-frames nil)
-(desktop-save-mode 1)
+;(setq desktop-restore-frames nil)
+;(desktop-save-mode 1)
 
 ;; start in full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
