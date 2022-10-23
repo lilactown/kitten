@@ -5,7 +5,7 @@
   :init
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-directory "~/org")
-  (setq org-agenda-files (list "inbox.org" "agenda.org" "notes.org" "projects.org"))
+  (setq org-agenda-files (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"))
   (setq org-capture-templates
        `(("i" "Inbox" entry (file "inbox.org")
           ,(concat "* TODO %?\n"
