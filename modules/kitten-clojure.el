@@ -60,6 +60,16 @@
  (:repl/quit sesman-quit))
 
 
+(defvar kitten-clojure/major (make-sparse-keymap))
+(define-prefix-command 'kitten-clojure/major)
+
+(bind-keys
+ :map kitten-clojure/major
+ ("g g" . cider-find-var))
+
+(reflex/provide-signal :mode/major kitten-clojure/major clojure-mode-map)
+
+
 (provide 'kitten-clojure)
 
 ;;; kitten-clojure.el ends here
