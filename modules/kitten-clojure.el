@@ -65,7 +65,9 @@
 
 (bind-keys
  :map kitten-clojure/major
- ("g g" . cider-find-var))
+ ("g g" . cider-find-var)
+ ("h h" . cider-doc)
+ ("h a" . cider-apropos))
 
 (reflex/provide-signal :mode/major kitten-clojure/major clojure-mode-map)
 
