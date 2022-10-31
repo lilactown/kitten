@@ -68,6 +68,11 @@
 (scroll-bar-mode -1)
 
 
+;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+
+(setq mouse-wheel-progressive-speed nil)
+
+
 ;; Sets `ns-transparent-titlebar' and `ns-appearance' frame parameters so window
 ;; borders will match the enabled theme.
 (and (or (daemonp)
