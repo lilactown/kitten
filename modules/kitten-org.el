@@ -53,9 +53,14 @@
                    (org-deadline-warning-days 0)))
           (todo "NEXT"
                 ((org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline))
+                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
                  (org-agenda-prefix-format "  %i %-12:c [%e] ")
                  (org-agenda-overriding-header "\nTasks\n")))
+          (todo "WAITING"
+               ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                 (org-agenda-overriding-header "\nWaiting\n")) )
           (agenda nil
                   ((org-agenda-entry-types '(:deadline))
                    (org-agenda-format-date "")
@@ -79,8 +84,10 @@
  ("c i" . org-clock-in)
  ("c o" . org-clock-out)
  ("r" . org-refile)
+ ("u c" . org-update-statistics-cookies)
+ ("u d" . org-deadline)
  ("u e" . org-set-effort)
- ("u s" . org-update-statistics-cookies)
+ ("u s" . org-schedule)
  ("u t" . (lambda (&optional arg)
             (interactive "P")
             (doom-modeline-mode -1)
