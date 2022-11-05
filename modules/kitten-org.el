@@ -1,3 +1,4 @@
+
 (require 'bind-key)
 (require 'reflex)
 
@@ -48,8 +49,8 @@
   (setq org-agenda-custom-commands
       '(("g" "Get Things Done (GTD)"
          ((agenda ""
-                  ((org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'deadline))
+                  (;(org-agenda-skip-function
+                   ;;'(org-agenda-skip-entry-if 'deadline))
                    (org-deadline-warning-days 0)))
           (todo "NEXT"
                 ((org-agenda-skip-function
