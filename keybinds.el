@@ -6,13 +6,18 @@
 
 ;;; Code:
 
+(require 'use-package)
+
 (require 'bind-key)
 (require 'reflex)
 
 ;; global commands
 (bind-keys*
- ("C-c SPC" . execute-extended-command)
- ("C-c ." . embark-act))
+ ("C-c SPC" . execute-extended-command))
+
+
+(eval-after-load 'embark
+  '(bind-key* "C-c ." 'embark-act))
 
 ;; Window managment
 (bind-keys
@@ -59,20 +64,25 @@
  ("s" . save-buffer))
 
 ;; Magit
-(bind-keys
- :prefix-map kitten/magit
- :prefix "C-c g"
- ("s" . magit-status)
- ("l" . magit-log))
+(eval-after-load 'magit
+  (bind-keys
+   :prefix-map kitten/magit
+   :prefix "C-c g"
+   ("s" . magit-status)
+   ("l" . magit-log)))
 
 ;; Searching
-(bind-keys
- :prefix-map kitten/search
- :prefix "C-c s"
- ("a" . consult-apropos)
- ("f" . consult-find)
- ("g" . consult-ripgrep)
- ("l" . consult-line))
+(defvar kitten/search (make-sparse-keymap))
+(define-prefix-command 'kitten/search)
+
+(reflex/bind-signals
+ kitten/search
+ ("a" :emacs/apropos)
+ ("f" :search/file)
+ ("g" :search/grep)
+ ("l" :search/line))
+
+(bind-key "C-c s" 'kitten/search)
 
 ;; project kitchen sink
 (bind-key "C-c p" 'projectile-command-map)

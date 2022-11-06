@@ -6,9 +6,19 @@
 
 
 (require 'use-package)
+(require 'reflex)
 
 ;; Replacements for most completing-read functions
 (use-package consult)
+
+(reflex/provide-signals
+ global
+ (:buffer/switch consult-buffer)
+ (:buffer/project-switch consult-project-buffer)
+ (:emacs/apropos consult-apropos)
+ (:search/file consult-find)
+ (:search/grep consult-ripgrep)
+ (:search/line consult-line))
 
 ;; Provides autocomplete minibuffer for completing-read
 (use-package vertico
