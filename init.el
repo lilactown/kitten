@@ -17,9 +17,6 @@
 
 (require 'use-package)
 
-;; Load keybindings
-(load! "keybinds.el")
-
 (require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-org)
@@ -33,6 +30,10 @@
 (require 'kitten-clojure)
 (require 'kitten-project)
 (require 'kitten-completion)
+
+
+;; Load keybindings
+(load! "keybinds.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
