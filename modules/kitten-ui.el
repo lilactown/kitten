@@ -6,9 +6,6 @@
 
 (require 'use-package)
 
-;; Misc
-(set-frame-font "Cascadia Mono PL-13")
-
 ;; Remove scroll bars when not needed and borders around them
 (fringe-mode -1)
 
