@@ -1,3 +1,11 @@
+;;; kitten-ui.el --- Configures main UI for kitten-emacs
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'use-package)
+
 ;; Misc
 (set-frame-font "Cascadia Mono PL-13")
 
@@ -9,8 +17,13 @@
  '((right-divider-width . 0)
    (internal-border-width . 0)))
 
+;; Show line numbers
 (global-display-line-numbers-mode)
+
+;; Show column numbers
 (column-number-mode)
+
+;; Show where we are in the buffer in the mode line
 (size-indication-mode)
 
 ;; don't constantly change the width of the buffer while scrolling
@@ -21,8 +34,10 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
   (setq doom-dracula-brighter-comments t)
   (setq doom-dracula-comment-bg nil)
+
   (load-theme 'doom-dracula t)
 
   ;; Enable flashing mode-line on errors
@@ -77,4 +92,7 @@
      (require 'ns-auto-titlebar nil t)
      (ns-auto-titlebar-mode +1))
 
+
 (provide 'kitten-ui)
+
+;;; kitten-ui.el ends here.
