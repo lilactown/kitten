@@ -17,9 +17,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(push "~/.config/emacs/lisp" load-path)
-(push "~/.config/emacs/modules" load-path)
-
 ;; Install the use-package convenience macro
 
 (straight-use-package 'use-package)

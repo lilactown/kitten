@@ -1,68 +1,22 @@
-
 ;;; init.el --- Initialize Emacs
 
 ;;; Commentary: N/A
 
 ;;; Code:
 
-;; convenience function for loading files in this config repo
-(defun load! (file)
-  "Load a file FILE from \"user-emacs-directory\"."
-  (load-file (expand-file-name file user-emacs-directory)))
-
-
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
-(load! "bootstrap.el")
+(load (expand-file-name "bootstrap.el" user-emacs-directory))
 
-(require 'use-package)
+;; add lisp & modules to load-path
+(push (expand-file-name "lisp" user-emacs-directory) load-path)
+(push (expand-file-name "modules" user-emacs-directory) load-path)
 
-(require 'kitten-emacs)
-(require 'kitten-ui)
-(require 'kitten-org)
-(require 'kitten-meow)
+;; custom var for kitten emacs files
+(defvar kitten-user-dir "~/.config/kitten")
 
-;; Programming languages
-(use-package markdown-mode)
+(setq custom-file (expand-file-name "init.el" kitten-user-dir))
 
-(require 'kitten-git)
-(require 'kitten-lisp)
-(require 'kitten-clojure)
-(require 'kitten-project)
-(require 'kitten-completion)
-
-
-;; Load keybindings
-(load! "keybinds.el")
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   '((eval define-clojure-indent
-           (:require 0)
-           (:import
-            '(0
-              (0)))
-           (defrecord
-             '(1 nil
-                 (:defn)))
-           (forv 1)
-           (for+ 1)
-           (future-with 1)
-           (start-unless 1)
-           (stop-when 1)
-           (do-at 1)
-           (thrown\? 1)
-           (thrown-with-msg\? 2)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+(load (expand-file-name "init.el" kitten-user-dir))
 
 ;;; init.el ends here
