@@ -20,9 +20,7 @@
 ;; Load keybindings
 (load! "keybinds.el")
 
-;; don't use tabs ever
-(setq-default indent-tabs-mode nil)
-
+(require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-org)
 (require 'kitten-meow)
@@ -34,14 +32,7 @@
 (require 'kitten-lisp)
 (require 'kitten-clojure)
 (require 'kitten-project)
-;; Not a fan of trailing whitespace in source files, strip it out when saving.
-(add-hook 'before-save-hook
-          (lambda ()
-            (when (derived-mode-p 'prog-mode)
-              (delete-trailing-whitespace))))
-
-;; Don't make backup~ files
-(setq make-backup-files nil)
+(require 'kitten-completion)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

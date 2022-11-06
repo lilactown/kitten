@@ -56,9 +56,6 @@
 ;; start in full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;; Visit files opened outside of Emacs in existing frame, not a new one
-(setq ns-pop-up-frames nil)
-
 ;; hide menu bar
 (menu-bar-mode -1)
 
