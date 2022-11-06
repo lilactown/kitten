@@ -35,9 +35,12 @@
 (bind-keys
  :prefix-map kitten/buffer
  :prefix "C-c b"
- ("d" . kill-buffer)
- ("b" . consult-buffer)
- ("B" . consult-project-buffer))
+ ("d" . kill-buffer))
+
+(reflex/bind-signals
+ kitten/buffer
+ ("b" :buffer/switch)
+ ("B" :buffer/project-switch))
 
 ;; File management
 
@@ -72,8 +75,9 @@
    ("l" . magit-log)))
 
 ;; Searching
-(defvar kitten/search (make-sparse-keymap))
-(define-prefix-command 'kitten/search)
+(bind-keys
+ :prefix-map kitten/search
+ :prefix "C-c s")
 
 (reflex/bind-signals
  kitten/search
@@ -81,8 +85,6 @@
  ("f" :search/file)
  ("g" :search/grep)
  ("l" :search/line))
-
-(bind-key "C-c s" 'kitten/search)
 
 ;; project kitchen sink
 (bind-key "C-c p" 'projectile-command-map)
@@ -114,10 +116,10 @@
  ("C-c r s" :repl/switch-to))
 
 ;; Help in IDE
-(reflex/bind-signals
- global
- ("C-c m h h" :help/doc)
- ("C-c m h a" :help/apropos))
+;; (reflex/bind-signals
+;;  global
+;;  ("C-c m h h" :help/doc)
+;;  ("C-c m h a" :help/apropos))
 
 ;; Org mode
 (bind-keys
