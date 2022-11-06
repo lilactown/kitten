@@ -7,9 +7,6 @@
 (require 'kitten-emacs)
 (require 'kitten-ui)
 
-;; set font
-(set-frame-font "Cascadia Mono PL-13")
-
 (require 'kitten-org)
 (require 'kitten-meow)
 
