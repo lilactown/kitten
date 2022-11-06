@@ -25,6 +25,7 @@
 
 (require 'kitten-ui)
 (require 'kitten-org)
+(require 'kitten-meow)
 
 ;; Programming languages
 (use-package markdown-mode)
