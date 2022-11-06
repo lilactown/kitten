@@ -23,13 +23,6 @@
 ;; don't use tabs ever
 (setq-default indent-tabs-mode nil)
 
-;; modal editing
-(use-package meow
-  :config
-  (require 'kitten-meow)
-  (meow-setup-indicator)
-  (meow-global-mode 1))
-
 (require 'kitten-ui)
 (require 'kitten-org)
 
