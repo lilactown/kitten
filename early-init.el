@@ -1,3 +1,9 @@
+;;; early-init.el --- https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html
+
+;;; Commentary:
+
+;;; Code:
+
 ;; recommended by straight.el to avoid loading packages init files on load
 (setq package-enable-at-startup nil)
 
@@ -15,3 +21,5 @@
           (lambda ()
             (setq gc-cons-threshold 33554432 ; 32mb
                   gc-cons-percentage 0.1)))
+
+;;; early-init.el ends here.

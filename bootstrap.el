@@ -1,6 +1,8 @@
 ;;; bootstrap.el --- Install the Straight package manager
 
-;;; Commentary: N/A
+;;; Commentary:
+
+;; N/A
 
 ;;; Code:
 
@@ -14,6 +16,9 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+(push "~/.config/emacs/lisp" load-path)
+(push "~/.config/emacs/modules" load-path)
 
 ;; Install the use-package convenience macro
 

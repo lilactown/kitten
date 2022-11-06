@@ -7,14 +7,15 @@
 
 ;; convenience function for loading files in this config repo
 (defun load! (file)
+  "Load a file FILE from \"user-emacs-directory\"."
   (load-file (expand-file-name file user-emacs-directory)))
 
-(push "~/.config/emacs/lisp" load-path)
-(push "~/.config/emacs/modules" load-path)
 
 ;; `bootstrap.el' contains boilerplate code related to package management. You
 ;; can follow the same pattern if you want to split out other bits of config.
 (load! "bootstrap.el")
+
+(require 'use-package)
 
 ;; Load keybindings
 (load! "keybinds.el")
