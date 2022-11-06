@@ -20,7 +20,7 @@
 (require 'kitten-completion)
 
 ;; Load keybindings
-(load "~/.config/kitten/keybinds.el")
+(load (expand-file-name "keybinds.el" kitten-user-dir))
 
 (setq custom-file (expand-file-name "custom.el" kitten-user-dir))
 (load custom-file)
