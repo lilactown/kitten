@@ -51,7 +51,8 @@
          ((agenda ""
                   (;(org-agenda-skip-function
                    ;;'(org-agenda-skip-entry-if 'deadline))
-                   (org-deadline-warning-days 0)))
+                   (org-deadline-warning-days 0)
+                   (org-agenda-prefix-format " %i %-12:c%?-12t%-6e% s")))
           (todo "NEXT"
                 ((org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
