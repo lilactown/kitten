@@ -67,12 +67,11 @@
  ("s" . save-buffer))
 
 ;; Magit
-(eval-after-load 'magit
-  (bind-keys
-   :prefix-map kitten/magit
-   :prefix "C-c g"
-   ("s" . magit-status)
-   ("l" . magit-log)))
+(bind-keys
+ :prefix-map kitten/magit
+ :prefix "C-c g"
+ ("s" . magit-status)
+ ("l" . magit-log))
 
 ;; Searching
 (bind-keys
