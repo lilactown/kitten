@@ -1,6 +1,6 @@
 ;;; init.el --- Initialize Emacs
 
-;;; Commentary: N/A
+;;; Commentary:
 
 ;;; Code:
 
@@ -13,9 +13,7 @@
 (push (expand-file-name "modules" user-emacs-directory) load-path)
 
 ;; custom var for kitten emacs files
-(defvar kitten-user-dir "~/.config/kitten")
-
-(setq custom-file (expand-file-name "init.el" kitten-user-dir))
+(defvar kitten-user-dir (expand-file-name "user" user-emacs-directory))
 
 (load (expand-file-name "init.el" kitten-user-dir))
 
