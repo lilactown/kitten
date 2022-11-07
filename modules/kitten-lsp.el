@@ -1,3 +1,9 @@
+;;; kitten-lsp.el --- Configuration for an IDE using LSP
+;;; Commentary:
+;;; Code:
+
+(require 'use-package)
+
 (use-package eglot)
 
 (use-package tree-sitter
@@ -12,3 +18,5 @@
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter)
+
+;;; kitten-lsp.el ends here.

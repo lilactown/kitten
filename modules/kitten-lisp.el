@@ -1,3 +1,9 @@
+;;; kitten-lisp --- Essentials for lisp-like language development
+;;; Commentary:
+;;; Code:
+
+(require 'use-package)
+
 (use-package rainbow-delimiters
   :hook ((cider-repl-mode
           clojurex-mode
@@ -62,3 +68,5 @@
 (use-package rainbow-mode)
 
 (provide 'kitten-lisp)
+
+;;; kitten-lisp.el ends here.

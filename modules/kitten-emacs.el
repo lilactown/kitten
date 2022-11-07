@@ -1,7 +1,5 @@
 ;;; kitten-emacs.el --- Configuration for general Emacs behavior
-
 ;;; Commentary:
-
 ;;; Code:
 
 ;; don't use tabs ever

@@ -1,7 +1,5 @@
 ;;; kitten-ui.el --- Configures main UI for kitten-emacs
-
 ;;; Commentary:
-
 ;;; Code:
 
 (require 'use-package)

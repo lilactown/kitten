@@ -1,3 +1,9 @@
+;;; kitten-js --- Configuration for JS & TS development
+;;; Commentary:
+;;; Code:
+
+(require 'use-package)
+
 (use-package typescript-mode
   :after tree-sitter
   :config
@@ -24,3 +30,7 @@
   (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
   (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
   (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1))))
+
+(provide 'kitten-js)
+
+;;; kitten-js.el ends here.

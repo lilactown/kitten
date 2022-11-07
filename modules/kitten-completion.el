@@ -1,9 +1,6 @@
 ;;; kitten-completion.el --- Package configuration for completions & associated UI
-
 ;;; Commentary:
-
 ;;; Code:
-
 
 (require 'use-package)
 (require 'reflex)

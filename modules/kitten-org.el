@@ -1,4 +1,13 @@
+;;; kitten-org --- Kitten org mode configuration
 
+;;; Commentary:
+
+;; Contains my custom note taking system, based on Getting Things Done.
+;; Not everyone's cup of tea.  Feel free to not use.
+
+;;; Code:
+
+(require 'use-package)
 (require 'bind-key)
 (require 'reflex)
 
@@ -141,3 +150,5 @@
 ;;   (org-roam-db-autosync-mode))
 
 (provide 'kitten-org)
+
+;;; kitten-org.el ends here.

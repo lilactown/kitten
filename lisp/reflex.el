@@ -7,6 +7,8 @@
 
 ;;; Code:
 
+(require 'use-package)
+
 (use-package a)
 
 (require 'a)
@@ -14,9 +16,11 @@
 (require 'seq)
 
 (defvar reflex/signal-map nil
-  "signal->keymap->key+command.")
+  "Global signal->keymap->key+command.")
 
 (defun reflex/-install-signal-binding! (signal)
+  "Look up SIGNAL in the global signal-map.  Internal only.
+Binds all keys that appear in key."
   (when-let ((keymap->key (a-get reflex/signal-map signal)))
     (let ((global-key (a-get-in keymap->key [global :key]))
 	  (global-target (a-get-in keymap->key [global :target])))
@@ -33,6 +37,7 @@
        keymap->key))))
 
 (defun reflex/bind-signal (key signal &optional keymap)
+  "Binds KEY to SIGNAL, with optional KEYMAP."
   (let ((keymap (or keymap 'global)))
     (setq reflex/signal-map (a-assoc-in reflex/signal-map (list signal keymap :key) key))
     (reflex/-install-signal-binding! signal)))

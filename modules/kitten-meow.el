@@ -1,16 +1,17 @@
 ;;; kitten-meow.el --- meow customizations
-
 ;;; Commentary:
 
 ;; Customizes meow with the colemak-dh key map and leader key config
 
 ;;; Code:
 
+(require 'use-package)
+
 (use-package meow
   :config
-  ;(meow-setup-indicator)
-  (meow-global-mode 1)
+  ;;(meow-setup-indicator)
 
+  (meow-global-mode 1)
 
   ;; Allows binding SPC g
   (setq meow-keypad-ctrl-meta-prefix nil)

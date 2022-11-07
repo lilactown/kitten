@@ -3,8 +3,8 @@
 ;; Package-Requires: ((use-package) (cider) (flycheck) (lsp-mode))
 ;;; Code:
 
+(require 'use-package)
 (require 'reflex)
-
 (require 'bind-key)
 
 (use-package flycheck
