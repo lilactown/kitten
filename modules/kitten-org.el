@@ -116,7 +116,7 @@
 
 
 (use-package org-mac-link)
-
+(require 'org-external-capture)
 
 (defvar kitten-mode/org (make-sparse-keymap))
 (define-prefix-command 'kitten-mode/org)
@@ -135,7 +135,7 @@
             (interactive "P")
             (doom-modeline-mode -1)
             (org-set-tags-command arg)
-            (doom-modeline-mode 1)) ))
+            (doom-modeline-mode 1))))
 
 (reflex/provide-signal :mode/major kitten-mode/org org-mode-map)
 
