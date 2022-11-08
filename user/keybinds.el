@@ -126,7 +126,8 @@
  :prefix "C-c n"
  ("a" . org-agenda)
  ("c" . org-capture)
- ("i" . org-capture-inbox))
+ ("i" . org-capture-inbox)
+ ("g" . org-mac-link-get-link))
 
 ;; Major mode specific
 (reflex/bind-signal "C-c m" :mode/major)

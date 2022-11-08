@@ -25,6 +25,9 @@
                     "<%<%Y-%m-%d %a %H:00>>"))
          ("n" "Note" entry  (file "notes.org")
           ,(concat "* Note (%a)\n"
+                   "/Entered on/ %U\n" "\n" "%?"))
+         ("e" "External" entry (file "notes.org")
+          ,(concat "* Note (%i)\n"
                    "/Entered on/ %U\n" "\n" "%?"))))
 
   ;; TODO
@@ -45,7 +48,6 @@
   (add-hook 'org-capture-mode-hook 'delete-other-windows)
   (defun org-capture-inbox ()
     (interactive)
-    (call-interactively 'org-store-link)
     (org-capture nil "i"))
 
   ;; set up refiling behavior
@@ -86,27 +88,6 @@
                 ((org-agenda-overriding-header "\nCompleted today\n"))))))))
 
 
-(defvar kitten-mode/org (make-sparse-keymap))
-(define-prefix-command 'kitten-mode/org)
-
-(bind-keys
- :map kitten-mode/org
- ("RET" . org-meta-return)
- ("c i" . org-clock-in)
- ("c o" . org-clock-out)
- ("r" . org-refile)
- ("u c" . org-update-statistics-cookies)
- ("u d" . org-deadline)
- ("u e" . org-set-effort)
- ("u s" . org-schedule)
- ("u t" . (lambda (&optional arg)
-            (interactive "P")
-            (doom-modeline-mode -1)
-            (org-set-tags-command arg)
-            (doom-modeline-mode 1)) ))
-
-(reflex/provide-signal :mode/major kitten-mode/org org-mode-map)
-
 (use-package org-modern
   :init
   (setq
@@ -134,20 +115,29 @@
   (global-org-modern-mode))
 
 
-;; (use-package org-roam
-;;   :custom
-;;   (org-roam-directory (file-truename "~/org-roam"))
-;;   :bind (("C-c n l" . org-roam-buffer-toggle)
-;;          ("C-c n f" . org-roam-node-find)
-;;          ("C-c n g" . org-roam-graph)
-;;          ("C-c n i" . org-roam-node-insert)
-;;          ("C-c n c" . org-roam-capture)
-;;          ;; Dailies
-;;          ("C-c n j" . org-roam-dailies-capture-today))
-;;   :config
-;;   ;; If you're using a vertical completion framework, you might want a more informative completion interface
-;;   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-;;   (org-roam-db-autosync-mode))
+(use-package org-mac-link)
+
+
+(defvar kitten-mode/org (make-sparse-keymap))
+(define-prefix-command 'kitten-mode/org)
+
+(bind-keys
+ :map kitten-mode/org
+ ("RET" . org-meta-return)
+ ("c i" . org-clock-in)
+ ("c o" . org-clock-out)
+ ("r" . org-refile)
+ ("u c" . org-update-statistics-cookies)
+ ("u d" . org-deadline)
+ ("u e" . org-set-effort)
+ ("u s" . org-schedule)
+ ("u t" . (lambda (&optional arg)
+            (interactive "P")
+            (doom-modeline-mode -1)
+            (org-set-tags-command arg)
+            (doom-modeline-mode 1)) ))
+
+(reflex/provide-signal :mode/major kitten-mode/org org-mode-map)
 
 (provide 'kitten-org)
 
