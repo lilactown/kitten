@@ -19,6 +19,7 @@
 (require 'kitten-clojure)
 
 ;; start server to allow emacsclient usage
+(require 'server)
 (unless (server-running-p)
   (server-start))
 
