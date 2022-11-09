@@ -26,9 +26,13 @@
          ("n" "Note" entry  (file "notes.org")
           ,(concat "* Note (%a)\n"
                    "/Entered on/ %U\n" "\n" "%?"))
-         ("e" "External" entry (file "notes.org")
+         ("u" "URL" entry (file "notes.org")
           ,(concat "* Note (%i)\n"
-                   "/Entered on/ %U\n" "\n" "%?"))))
+                   "/Entered on/ %U\n" "\n" "%?"))
+         ("e" "External Content" entry (file "notes.org")
+          ,(concat "* Note\n"
+                   "/Entered on/ %U\n" "\n" "%?"
+                   "%i"))))
 
   ;; TODO
   (setq org-todo-keywords
@@ -114,9 +118,6 @@
    "⭠ now ─────────────────────────────────────────────────")
   (global-org-modern-mode))
 
-
-(use-package org-mac-link)
-(require 'org-external-capture)
 
 (defvar kitten-mode/org (make-sparse-keymap))
 (define-prefix-command 'kitten-mode/org)

@@ -7,6 +7,7 @@
 (require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-org)
+(require 'kitten-capture)
 (require 'kitten-meow)
 (require 'kitten-project)
 (require 'kitten-completion)
