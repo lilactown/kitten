@@ -62,8 +62,10 @@ Triggered by a custom macOS Quick Action with a keyboard shortcut."
   (org-capture-string (org-mac-link-chrome-get-frontmost-url) "u")
   (ignore-errors))
 
-(defun kitten-capture-note-with-content (content)
-  (org-capture-string content "e"))
+(defun kitten-capture-note-with-content (file)
+
+  (org-capture-string "Contents:" "e")
+  (insert-file-contents file))
 
 (provide 'kitten-capture)
 
