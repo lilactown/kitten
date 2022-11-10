@@ -74,8 +74,8 @@
                  (org-agenda-prefix-format "  %i %-12:c [%e] ")
                  (org-agenda-overriding-header "\nTasks\n")))
           (todo "WAITING"
-               ((org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline))
+               (;;(org-agenda-skip-function
+                ;;  '(org-agenda-skip-entry-if 'deadline))
                  (org-agenda-prefix-format "  %i %-12:c [%e] ")
                  (org-agenda-overriding-header "\nWaiting\n")) )
           (agenda nil
