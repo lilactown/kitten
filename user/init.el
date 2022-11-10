@@ -21,6 +21,7 @@
 
 ;; start server to allow emacsclient usage
 (require 'server)
+(setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
 (unless (server-running-p)
   (server-start))
 
