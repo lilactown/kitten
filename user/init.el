@@ -7,6 +7,10 @@
 (require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-org)
+(setq org-directory "~/iCloud/org/personal")
+(setq org-agenda-files (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"
+                             "~/iCloud/org/work/projects.org"))
+
 (require 'kitten-capture)
 (require 'kitten-meow)
 (require 'kitten-project)
