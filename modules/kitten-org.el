@@ -87,16 +87,14 @@
                      ((org-agenda-prefix-format "  %?-12t% s")
                       (org-agenda-overriding-header "\nInbox\n")))
           (tags "CLOSED>=\"<today>\""
-                ((org-agenda-overriding-header "\nCompleted today\n"))))))))
+                ((org-agenda-overriding-header "\nCompleted today\n")))))))
 
-
-(use-package org-modern
-  :init
+  ;; Copied from https://github.com/minad/org-modern
   (setq
    ;; Edit settings
    org-auto-align-tags nil
    org-tags-column 0
-   org-catch-invisible-edits 'show-and-error
+   org-fold-catch-invisible-edits 'show-and-error
    org-special-ctrl-a/e t
    org-insert-heading-respect-content t
 
@@ -107,14 +105,18 @@
 
    ;; Agenda styling
    org-agenda-tags-column 0
-   org-agenda-block-separator ?─
+   ;; org-agenda-block-separator ?─
    org-agenda-time-grid
    '((daily today require-timed)
      (800 1000 1200 1400 1600 1800 2000)
      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
    org-agenda-current-time-string
-   "⭠ now ─────────────────────────────────────────────────")
-  (global-org-modern-mode))
+   "⭠ now ─────────────────────────────────────────────────"))
+
+
+;; (use-package org-modern
+;;   :init
+;;   (global-org-modern-mode))
 
 
 (defvar kitten-mode/org (make-sparse-keymap))
