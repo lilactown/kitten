@@ -14,6 +14,9 @@
 ;; Don't make backup~ files
 (setq make-backup-files nil)
 
+;; auto revert files when visiting the buffer
+(global-auto-revert-mode)
+
 (require 'use-package)
 
 ;; You can think of embark-act as a keyboard-based version of a right-click contextual menu.
