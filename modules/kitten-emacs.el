@@ -34,6 +34,10 @@
 ;; Visit files opened outside of Emacs in existing frame, not a new one
 (setq ns-pop-up-frames nil)
 
+;; Put custom settings in custom.el
+(setq custom-file (expand-file-name "custom.el" kitten-user-dir))
+(load custom-file)
+
 (provide 'kitten-emacs)
 
 ;;; kitten-emacs.el ends here.

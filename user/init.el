@@ -7,9 +7,12 @@
 (require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-org)
+
+;; sync org files across devices
 (setq org-directory "~/iCloud/org/personal")
-(setq org-agenda-files (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"
-                             "~/iCloud/org/work/projects.org"))
+(setq org-agenda-files
+      (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"
+            "~/iCloud/org/work/projects.org"))
 
 (require 'kitten-capture)
 (require 'kitten-meow)
@@ -36,8 +39,5 @@
 
 ;; Load keybindings
 (load (expand-file-name "keybinds.el" kitten-user-dir))
-
-(setq custom-file (expand-file-name "custom.el" kitten-user-dir))
-(load custom-file)
 
 ;;; init.el ends here
