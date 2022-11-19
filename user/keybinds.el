@@ -97,14 +97,6 @@
  ("C-c e m" :eval/macroexpand-last-sexp)
  ("C-c e p" :eval/pprint-last-sexp))
 
-(reflex/provide-signals
- emacs-lisp-mode-map
- (:eval/buffer eval-buffer)
- (:eval/defun eval-defun)
- (:eval/last-sexp eval-last-sexp)
- (:eval/macroexpand-last-sexp pp-macroexpand-last-sexp)
- (:eval/pprint-last-sexp pp-eval-last-sexp))
-
 ;; REPL
 (reflex/bind-signals
  global
@@ -112,7 +104,10 @@
  ("C-c r c" :repl/connect)
  ("C-c r l" :repl/clear)
  ("C-c r q" :repl/quit)
- ("C-c r s" :repl/switch-to))
+ ("C-c r s" :repl/switch-to)
+ ("C-c r g" :repl/goto-defun)
+ ("C-c r h h" :repl/doc-view)
+ ("C-c r h a" :repl/doc-apropos))
 
 ;; Help in IDE
 ;; (reflex/bind-signals
@@ -129,7 +124,21 @@
  ("i" . org-capture-inbox)
  ("g" . org-mac-link-get-link))
 
-;; Major mode specific
+;; Catch all major mode specific
 (reflex/bind-signal "C-c m" :mode/major)
+
+;; Basic elisp
+(reflex/provide-signals
+ emacs-lisp-mode-map
+ ;; Eval
+ (:eval/buffer eval-buffer)
+ (:eval/defun eval-defun)
+ (:eval/last-sexp eval-last-sexp)
+ (:eval/macroexpand-last-sexp pp-macroexpand-last-sexp)
+ (:eval/pprint-last-sexp pp-eval-last-sexp)
+
+ ;; REPL
+ (:repl/goto-defun find-function)
+ (:repl/doc-apropos consult-apropos))
 
 ;;; keybinds.el ends here
