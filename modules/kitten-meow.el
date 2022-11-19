@@ -97,6 +97,7 @@
    '("p" . meow-yank)
    '("q" . meow-quit)
    '("r" . meow-replace)
+   '("R" . undo-redo)
    '("s" . meow-insert)
    '("S" . meow-open-above)
    '("t" . meow-till)
