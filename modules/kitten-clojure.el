@@ -51,8 +51,9 @@
  (:repl/quit sesman-quit)
  (:repl/switch-to cider-switch-to-repl-buffer)
 
- (:help/doc cider-doc)
- (:help/apropos cider-apropos))
+ (:repl/goto-defun cider-find-var)
+ (:repl/doc-view cider-doc)
+ (:repl/doc-apropos cider-apropos))
 
 
 (reflex/provide-signals
@@ -61,19 +62,6 @@
  (:repl/interrupt cider-interrupt)
  (:repl/jack-in sesman-start)
  (:repl/quit sesman-quit))
-
-
-(defvar kitten-clojure/major (make-sparse-keymap))
-(define-prefix-command 'kitten-clojure/major)
-
-(bind-keys
- :map kitten-clojure/major
- ("g g" . cider-find-var)
- ("h h" . cider-doc)
- ("h a" . cider-apropos))
-
-(reflex/provide-signal :mode/major kitten-clojure/major clojure-mode-map)
-
 
 (provide 'kitten-clojure)
 
