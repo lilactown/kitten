@@ -17,13 +17,18 @@
   (setq org-capture-templates
        `(("i" "Inbox" entry (file "inbox.org")
           ,(concat "* TODO %?\n"
-                   "/Entered on/ %U"))
+                   ":PROPERTIES:\n"
+                   ":CREATED: %U\n"
+                   ":END:"))
          ("m" "Meeting" entry (file+headline "agenda.org" "Future")
            ,(concat "* %? :meeting:\n"
                     "<%<%Y-%m-%d %a %H:00>>"))
          ("n" "Note" entry  (file "notes.org")
           ,(concat "* Note (%a)\n"
-                   "/Entered on/ %U\n" "\n" "%?"))
+                   ":PROPERTIES:\n"
+                   ":CREATED: %U\n"
+                   ":END:"
+                   "\n" "%?"))
          ("u" "URL" entry (file "notes.org")
           ,(concat "* Note (%i)\n"
                    "/Entered on/ %U\n" "\n" "%?"))
