@@ -31,10 +31,16 @@
                    "\n" "%?"))
          ("u" "URL" entry (file "notes.org")
           ,(concat "* Note (%i)\n"
-                   "/Entered on/ %U\n" "\n" "%?"))
+                   ":PROPERTIES:\n"
+                   ":CREATED: %U\n"
+                   ":END:"
+                   "\n" "%?"))
          ("e" "External Content" entry (file "notes.org")
           ,(concat "* Note\n"
-                   "/Entered on/ %U\n" "\n" "%?"
+                   ":PROPERTIES:\n"
+                   ":CREATED: %U\n"
+                   ":END:"
+                   "\n" "%?"
                    "%i"))))
 
   ;; TODO
