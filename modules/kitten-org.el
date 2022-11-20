@@ -72,9 +72,27 @@
   ;; agenda
   (setq org-agenda-custom-commands
         '(("p" "Prioritize"
-           ((tags-todo "+@urgent+@important")
-            (tags-todo "+@urgent-@important")
-            (tags-todo "+@important-@urgent")))
+           ((tags-todo "+@urgent+@important"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Urgent & Important\n")))
+            (tags-todo "+@urgent-@important"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Urgent\n")))
+            (tags-todo "+@important-@urgent"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Important\n")))))
+          ("b" "Backlog"
+           ((tags-todo "-@important-@urgent"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Backlog\n")))))
           ("g" "Get Things Done (GTD)"
            ((agenda ""
                     (;(org-agenda-skip-function
@@ -85,22 +103,22 @@
                   ((org-agenda-skip-function
                     '(org-agenda-skip-entry-if 'deadline 'scheduled))
                    (org-agenda-prefix-format "  %i %-12:c [%e] ")
-                   (org-agenda-overriding-header "\nTasks\n")))
+                   (org-agenda-overriding-header "Tasks\n")))
             (todo "WAITING"
                   (;;(org-agenda-skip-function
                    ;;  '(org-agenda-skip-entry-if 'deadline))
                    (org-agenda-prefix-format "  %i %-12:c [%e] ")
-                   (org-agenda-overriding-header "\nWaiting\n")) )
+                   (org-agenda-overriding-header "Waiting\n")) )
             (agenda nil
                     ((org-agenda-entry-types '(:deadline))
                      (org-agenda-format-date "")
                      (org-deadline-warning-days 7)
                      (org-agenda-skip-function
                       '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
-                     (org-agenda-overriding-header "\nDeadlines")))
+                     (org-agenda-overriding-header "Deadlines\n")))
             (tags-todo "inbox"
                        ((org-agenda-prefix-format "  %?-12t% s")
-                        (org-agenda-overriding-header "\nInbox\n")))
+                        (org-agenda-overriding-header "Inbox\n")))
             (tags "CLOSED>=\"<today>\""
                   ((org-agenda-overriding-header "\nCompleted today\n")))))))
 
