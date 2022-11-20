@@ -7,12 +7,16 @@
 
 ;;; Code:
 
+(require 'kitten-vars)
 (require 'use-package)
 (require 'bind-key)
 (require 'reflex)
 
 (use-package org
   :init
+  (setq org-directory kitten-org-dir)
+  (setq org-agenda-files kitten-org-agenda-files)
+
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-capture-templates
        `(("i" "Inbox" entry (file "inbox.org")

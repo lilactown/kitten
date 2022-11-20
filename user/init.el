@@ -6,13 +6,14 @@
 
 (require 'kitten-emacs)
 (require 'kitten-ui)
-(require 'kitten-org)
 
 ;; sync org files across devices
-(setq org-directory "~/iCloud/org/personal")
-(setq org-agenda-files
+(setq kitten-org-dir "~/iCloud/org/personal")
+(setq kitten-org-agenda-files
       (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"
             "~/iCloud/org/work/projects.org"))
+
+(require 'kitten-org)
 
 (require 'kitten-capture)
 (require 'kitten-meow)
