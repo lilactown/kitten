@@ -12,8 +12,7 @@
 (push (expand-file-name "lisp" user-emacs-directory) load-path)
 (push (expand-file-name "modules" user-emacs-directory) load-path)
 
-;; custom var for kitten emacs files
-(defvar kitten-user-dir (expand-file-name "user" user-emacs-directory))
+(require 'kitten-vars)
 
 (load (expand-file-name "init.el" kitten-user-dir))
 
