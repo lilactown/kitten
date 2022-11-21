@@ -35,14 +35,13 @@
 Use `org-mac-link-safari-get-frontmost-url' to capture url from Safari.
 Triggered by a custom macOS Quick Action with a keyboard shortcut."
   (interactive)
-    (make-frame '((name . "capture")
-                (top . 100)
-                (left . 200)
-                (width . 80)
-                (height . 25)))
-  (select-frame-by-name "capture")
-  (delete-other-windows)
-
+  ;; (make-frame '((name . "capture")
+  ;;               (top . 100)
+  ;;               (left . 200)
+  ;;               (width . 80)
+  ;;               (height . 25)))
+  ;; (select-frame-by-name "capture")
+  ;; (delete-other-windows)
   (org-capture-string (org-mac-link-safari-get-frontmost-url) "u")
   (ignore-errors))
 
@@ -51,13 +50,13 @@ Triggered by a custom macOS Quick Action with a keyboard shortcut."
 Use `org-mac-link-safari-get-frontmost-url' to capture url from Safari.
 Triggered by a custom macOS Quick Action with a keyboard shortcut."
   (interactive)
-    (make-frame '((name . "capture")
-                (top . 100)
-                (left . 200)
-                (width . 80)
-                (height . 25)))
-  (select-frame-by-name "capture")
-  (delete-other-windows)
+  ;; (make-frame '((name . "capture")
+  ;;               (top . 100)
+  ;;               (left . 200)
+  ;;               (width . 80)
+  ;;               (height . 25)))
+  ;; (select-frame-by-name "capture")
+  ;; (delete-other-windows)
 
   (org-capture-string (org-mac-link-chrome-get-frontmost-url) "u")
   (ignore-errors))
