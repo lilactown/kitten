@@ -187,8 +187,9 @@ Hides doom-modeline while doing it."
 
  (:notes/return org-meta-return)
  (:notes/clock-in org-clock-in)
- (:notes/clock-out org-clock out)
- (:notes/insert-timestamp org-time-stamp-inactive)
+ (:notes/clock-out org-clock-out)
+ (:notes/insert-time-stamp org-time-stamp)
+ (:notes/insert-time-stamp-inactive org-time-stamp-inactive)
  (:notes/refile org-refile)
  (:notes/update-cookies org-update-statistics-cookies)
  (:notes/update-deadline org-deadline)
