@@ -139,6 +139,8 @@
    org-hide-emphasis-markers t
    org-pretty-entities t
    org-ellipsis "…"
+   org-hide-leading-stars t
+   org-startup-indented t
 
    ;; Agenda styling
    org-agenda-tags-column 0
@@ -150,32 +152,49 @@
    org-agenda-current-time-string
    "⭠ now ─────────────────────────────────────────────────"))
 
+(use-package org-roam
+  :straight (org-roam
+              :fork (:host github :repo "lilactown/org-roam"))
+  :after org
+  :custom (org-roam-directory (concat (file-truename org-directory) "/roam"))
+  :config (org-roam-setup))
 
-;; (use-package org-modern
-;;   :init
-;;   (global-org-modern-mode))
 
+(use-package org-roam-ui
+  :after org)
 
-(defvar kitten-mode/org (make-sparse-keymap))
-(define-prefix-command 'kitten-mode/org)
+(defun kitten-org/update-tags (&optional arg)
+  "Update tags of current visible entry ARG.
+Hides doom-modeline while doing it."
+  (interactive "P")
+  (doom-modeline-mode -1)
+  (org-set-tags-command arg)
+  (doom-modeline-mode 1))
 
-(bind-keys
- :map kitten-mode/org
- ("RET" . org-meta-return)
- ("c i" . org-clock-in)
- ("c o" . org-clock-out)
- ("r" . org-refile)
- ("u c" . org-update-statistics-cookies)
- ("u d" . org-deadline)
- ("u e" . org-set-effort)
- ("u s" . org-schedule)
- ("u t" . (lambda (&optional arg)
-            (interactive "P")
-            (doom-modeline-mode -1)
-            (org-set-tags-command arg)
-            (doom-modeline-mode 1))))
+(reflex/provide-signals
+ global
+ (:notes/agenda org-agenda)
+ (:notes/capture org-capture)
+ (:notes/inbox org-capture-inbox)
+ (:notes/capture-external org-mac-get-link)
 
-(reflex/provide-signal :mode/major kitten-mode/org org-mode-map)
+ (:roam/find-node org-roam-node-find)
+ (:roam/capture org-roam-capture)
+ (:roam/insert-node org-roam-node-insert)
+ (:roam/toggle org-roam-buffer-toggle)
+ (:roam/create-id org-id-get-create)
+ (:roam/extract org-roam-extract-subtree)
+
+ (:notes/return org-meta-return)
+ (:notes/clock-in org-clock-in)
+ (:notes/clock-out org-clock out)
+ (:notes/insert-timestamp org-time-stamp-inactive)
+ (:notes/refile org-refile)
+ (:notes/update-cookies org-update-statistics-cookies)
+ (:notes/update-deadline org-deadline)
+ (:notes/update-effort org-set-effort)
+ (:notes/update-schedule org-schedule)
+ (:notes/update-tags kitten-org/update-tags))
 
 (provide 'kitten-org)
 

@@ -116,16 +116,49 @@
 ;;  ("C-c m h a" :help/apropos))
 
 ;; Org mode
-(bind-keys
- :prefix-map kitten/notes
- :prefix "C-c n"
- ("a" . org-agenda)
- ("c" . org-capture)
- ("i" . org-capture-inbox)
- ("g" . org-mac-link-get-link))
+;; (bind-keys
+;;  :prefix-map kitten/notes
+;;  :prefix "C-c n"
+;;  ("a" . org-agenda)
+;;  ("c" . org-capture)
+;;  ("i" . org-capture-inbox)
+;;  ("g" . org-mac-link-get-link)
+;;  ("r f" . org-roam-node-find)
+;;  ("r c" . org-roam-capture)
+;;  ("t t" . org-time-stamp-inactive))
+(reflex/bind-signals
+ global
+ ("C-c n a" :notes/agenda)
+ ("C-c n c" :notes/capture)
+ ("C-c n i" :notes/inbox)
+ ("C-c n g" :notes/capture-external)
+ ("C-c n k f" :roam/find-node)
+ ("C-c n k c" :roam/capture))
 
-;; Catch all major mode specific
-(reflex/bind-signal "C-c m" :mode/major)
+;; (bind-keys
+;;  :map org-mode-map
+;;  ("C-c n r a" . org-roam-alias-add)
+;;  ("C-c n r i" . org-roam-node-insert)
+;;  ("C-c n r l" . org-roam-buffer-toggle)
+;;  ("C-c n r o" . org-id-get-create)
+;;  ("C-c n r t" . org-roam-tag-add))
+
+(reflex/bind-signals
+ org-mode-map
+ ("C-c m RET" :notes/return)
+ ("C-c m c i" :notes/clock-in)
+ ("C-c m c o" :notes/clock-out)
+ ("C-c m r" :notes/refile)
+ ("C-c m u c" :notes/update-cookies)
+ ("C-c m u d" :notes/update-deadline)
+ ("C-c m u e" :notes/update-effort)
+ ("C-c m u s" :notes/update-schedule)
+ ("C-c m u t" :notes/update-tags)
+ ;; roam
+ ("C-c m k i" :roam/insert-node)
+ ("C-c m k l" :roam/toggle)
+ ("C-c m k o" :roam/create-id)
+ ("C-c m k x" :roam/extract))
 
 ;; Basic elisp
 (reflex/provide-signals
