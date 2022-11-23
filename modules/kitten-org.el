@@ -184,6 +184,7 @@ Hides doom-modeline while doing it."
  (:roam/toggle org-roam-buffer-toggle)
  (:roam/create-id org-id-get-create)
  (:roam/extract org-roam-extract-subtree)
+ (:roam/sync org-roam-db-sync)
 
  (:notes/return org-meta-return)
  (:notes/clock-in org-clock-in)

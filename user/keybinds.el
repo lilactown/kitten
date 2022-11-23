@@ -122,6 +122,7 @@
  ("C-c n c" :notes/capture)
  ("C-c n i" :notes/inbox)
  ("C-c n g" :notes/capture-external)
+ ("C-c n k =" :roam/sync)
  ("C-c n k f" :roam/find-node)
  ("C-c n k c" :roam/capture))
 
