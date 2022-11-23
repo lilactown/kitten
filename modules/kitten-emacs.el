@@ -5,6 +5,10 @@
 ;; don't use tabs ever
 (setq-default indent-tabs-mode nil)
 
+(require 'whitespace)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(global-whitespace-mode t)
+
 ;; Not a fan of trailing whitespace in source files, strip it out when saving.
 (add-hook 'before-save-hook
           (lambda ()
@@ -19,7 +23,8 @@
 
 (require 'use-package)
 
-;; You can think of embark-act as a keyboard-based version of a right-click contextual menu.
+;; You can think of embark-act as a keyboard-based version of a right-click
+;; contextual menu.
 (use-package embark
   :init
   ;; Optionally replace the key help with a completing-read interface
