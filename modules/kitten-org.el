@@ -75,24 +75,48 @@
 
   ;; agenda
   (setq org-agenda-custom-commands
-        '(("p" "Prioritize"
-           ((tags-todo "+@urgent+@important"
+        '(("p" . "Prioritized") ; gives label to "p"
+          ("pp" "Prioritized personal"
+           ((tags-todo "+@urgent+@important+personal"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")
                         (org-agenda-overriding-header "Urgent & Important\n")))
-            (tags-todo "+@urgent-@important"
+            (tags-todo "+@urgent-@important+personal"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")
                         (org-agenda-overriding-header "Urgent\n")))
-            (tags-todo "+@important-@urgent"
+            (tags-todo "+@important-@urgent+personal"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")
                         (org-agenda-overriding-header "Important\n")))))
-          ("b" "Backlog"
-           ((tags-todo "-@important-@urgent"
+          ("pw" "Prioritized work"
+           ((tags-todo "+@urgent+@important+work"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Urgent & Important\n")))
+            (tags-todo "+@urgent-@important+work"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Urgent\n")))
+            (tags-todo "+@important-@urgent+work"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Important\n")))))
+          ("b" . "Backlog") ; gives label to "b"
+          ("bp" "Personal backlog"
+           ((tags-todo "-@important-@urgent+personal"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "Backlog\n")))))
+          ("bw" "Work backlog"
+           ((tags-todo "-@important-@urgent+work"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")
