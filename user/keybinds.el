@@ -95,7 +95,8 @@
  ("C-c e d" :eval/defun)
  ("C-c e e" :eval/last-sexp)
  ("C-c e m" :eval/macroexpand-last-sexp)
- ("C-c e p" :eval/pprint-last-sexp))
+ ("C-c e p" :eval/pprint-last-sexp)
+ ("C-c e r" :eval/region))
 
 ;; REPL
 (reflex/bind-signals
