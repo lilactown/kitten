@@ -120,11 +120,13 @@
  global
  ("C-c n a" :notes/agenda)
  ("C-c n c" :notes/capture)
+ ("C-c n d" :notes/capture-daily)
  ("C-c n i" :notes/inbox)
  ("C-c n g" :notes/capture-external)
  ("C-c n k =" :roam/sync)
  ("C-c n k f" :roam/find-node)
- ("C-c n k c" :roam/capture))
+ ("C-c n k c" :roam/capture)
+ ("C-c n k d" :roam/daily))
 
 (reflex/bind-signals
  org-mode-map

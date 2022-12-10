@@ -157,7 +157,13 @@
               :fork (:host github :repo "lilactown/org-roam"))
   :after org
   :custom (org-roam-directory (concat (file-truename org-directory) "/roam"))
-  :config (org-roam-setup))
+  :config (org-roam-setup)
+  :init
+  (setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %a\n%?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n")))))
 
 
 (use-package org-roam-ui
@@ -175,6 +181,7 @@ Hides doom-modeline while doing it."
  global
  (:notes/agenda org-agenda)
  (:notes/capture org-capture)
+ (:notes/capture-daily org-roam-dailies-capture-today)
  (:notes/inbox org-capture-inbox)
  (:notes/capture-external org-mac-get-link)
 
@@ -185,6 +192,7 @@ Hides doom-modeline while doing it."
  (:roam/create-id org-id-get-create)
  (:roam/extract org-roam-extract-subtree)
  (:roam/sync org-roam-db-sync)
+ (:roam/daily org-roam-dailies-goto-today)
 
  (:notes/return org-meta-return)
  (:notes/clock-in org-clock-in)
