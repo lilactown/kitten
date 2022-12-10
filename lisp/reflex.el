@@ -23,13 +23,13 @@
 Binds all keys that appear in key."
   (when-let ((keymap->key (a-get reflex/signal-map signal)))
     (let ((global-key (a-get-in keymap->key [global :key]))
-	  (global-target (a-get-in keymap->key [global :target])))
+          (global-target (a-get-in keymap->key [global :target])))
       (seq-map
        (lambda (x)
-	 (let ((keymap (car x))
-	       (target (or (a-get (cdr x) :target) global-target))
-	       (key (or (a-get (cdr x) :key) global-key)))
-	   (let ((keymap (when (not (eq 'global keymap))
+         (let ((keymap (car x))
+               (target (or (a-get (cdr x) :target) global-target))
+               (key (or (a-get (cdr x) :key) global-key)))
+           (let ((keymap (when (not (eq 'global keymap))
                            keymap)))
 
              (when (and target key)
