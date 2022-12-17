@@ -23,6 +23,10 @@
 
 (require 'use-package)
 
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize))
+
 ;; You can think of embark-act as a keyboard-based version of a right-click
 ;; contextual menu.
 (use-package embark
