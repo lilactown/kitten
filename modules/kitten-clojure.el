@@ -45,6 +45,7 @@
  (:eval/macroexpand-last-sexp cider-macroexpand-all)
  (:eval/pprint-last-sexp cider-pprint-eval-last-sexp)
  (:eval/replace-last-sexp cider-eval-last-sexp-and-replace)
+ (:eval/last-sexp-to-comment cider-pprint-eval-last-sexp-to-comment)
 
  (:repl/jack-in sesman-start)
  (:repl/connect kitten-clojure/connect)

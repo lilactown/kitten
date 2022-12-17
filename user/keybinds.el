@@ -91,6 +91,7 @@
 ;; Evaluating
 (reflex/bind-signals
  global
+ ("C-c e ;" :eval/last-sexp-to-comment)
  ("C-c e b" :eval/buffer)
  ("C-c e d" :eval/defun)
  ("C-c e e" :eval/last-sexp)
