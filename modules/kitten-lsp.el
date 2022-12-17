@@ -19,4 +19,7 @@
   :ensure t
   :after tree-sitter)
 
+
+(provide 'kitten-lsp)
+
 ;;; kitten-lsp.el ends here.
