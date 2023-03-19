@@ -7,12 +7,8 @@
 (require 'reflex)
 (require 'bind-key)
 
-(use-package flycheck
-  :init
-  (setq flycheck-emacs-lisp-load-path 'inherit)
-  (global-flycheck-mode))
-
-(use-package flycheck-clj-kondo)
+(use-package flycheck-clj-kondo
+  :after flycheck)
 
 (use-package clojure-mode
   :magic ("^#![^\n]*/\\(clj\\|clojure\\|bb\\|lumo\\)" . clojure-mode)
