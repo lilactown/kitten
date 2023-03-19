@@ -5,6 +5,7 @@
 (require 'use-package)
 
 (use-package magit
+  :straight (magit :host github :repo "magit/magit" :branch "main")
   :commands magit-status)
 
 (provide 'kitten-git)
