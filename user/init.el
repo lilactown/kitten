@@ -23,9 +23,11 @@
 ;; Programming languages
 (use-package markdown-mode)
 
+(require 'kitten-lsp)
 (require 'kitten-git)
 (require 'kitten-lisp)
 (require 'kitten-clojure)
+(require 'kitten-ocaml)
 
 ;; start server to allow emacsclient usage
 (require 'server)
