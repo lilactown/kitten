@@ -3,8 +3,19 @@
 ;;; Code:
 
 (require 'use-package)
+(require 'reflex)
 
 (use-package eglot)
+
+(reflex/provide-signals
+ global
+ (:lsp/start eglot)
+ (:lsp/stop eglot-shutdown)
+ (:lsp/actions eglot-code-actions)
+ (:lsp/find-refs xref-find-references)
+ (:lsp/find-defs xref-find-definitions-other-window)
+ (:lsp/buffer-diagnostics consult-flymake)
+ (:lsp/project-diagnostics flymake-show-project-diagnostics))
 
 (use-package tree-sitter
   :config

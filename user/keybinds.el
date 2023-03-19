@@ -111,6 +111,17 @@
  ("C-c r h h" :repl/doc-view)
  ("C-c r h a" :repl/doc-apropos))
 
+;; LSP
+(reflex/bind-signals
+ global
+ ("C-c l '" :lsp/start)
+ ("C-c l q" :lsp/stop)
+ ("C-c l ." :lsp/actions)
+ ("C-c l d" :lsp/find-defs)
+ ("C-c l ?" :lsp/find-refs)
+ ("C-c l b" :lsp/buffer-diagnostics)
+ ("C-c l p" :lsp/project-diagnostics))
+
 ;; Help in IDE
 ;; (reflex/bind-signals
 ;;  global
