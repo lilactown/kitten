@@ -18,7 +18,6 @@
 
 (require 'kitten-capture)
 (require 'kitten-meow)
-(require 'kitten-project)
 (require 'kitten-completion)
 
 ;; Programming languages
