@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(require 'kitten-git)
 (require 'kitten-emacs)
 (require 'kitten-ui)
 
@@ -24,7 +25,6 @@
 (use-package markdown-mode)
 
 (require 'kitten-lsp)
-(require 'kitten-git)
 (require 'kitten-lisp)
 (require 'kitten-clojure)
 (require 'kitten-ocaml)
