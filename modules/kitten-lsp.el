@@ -6,11 +6,6 @@
 
 (use-package eglot)
 
-(use-package flycheck
-  :init
-  (setq flycheck-emacs-lisp-load-path 'inherit)
-  (global-flycheck-mode))
-
 (use-package tree-sitter
   :config
   ;; activate tree-sitter on any buffer containing code for which it has a parser available

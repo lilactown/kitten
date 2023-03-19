@@ -7,6 +7,11 @@
 (require 'reflex)
 (require 'bind-key)
 
+(use-package flycheck
+  :init
+  (setq flycheck-emacs-lisp-load-path 'inherit)
+  (global-flycheck-mode))
+
 (use-package flycheck-clj-kondo
   :after flycheck)
 
