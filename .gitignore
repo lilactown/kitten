@@ -1,5 +1,6 @@
 /transient/
-/straight/
+straight/*
+!straight/versions
 /eln-cache/
 /auto-save-list/
 /.emacs.desktop
