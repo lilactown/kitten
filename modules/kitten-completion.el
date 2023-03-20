@@ -6,7 +6,11 @@
 (require 'reflex)
 
 ;; Replacements for most completing-read functions
-(use-package consult)
+(use-package consult
+  :init
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref))
 
 (reflex/provide-signals
  global
@@ -76,11 +80,8 @@
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
-  ;; :hook
-  ;; (embark-collect-mode . consult-preview-at-point-mode)
   :config
-  ;; (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
-  )
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
 ;; You can think of embark-act as a keyboard-based version of a right-click
 ;; contextual menu.
