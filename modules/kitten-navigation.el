@@ -23,7 +23,7 @@
 
 (reflex/provide-signals
  global
- (:navigation/jump-char avy-goto-char)
+ (:navigation/jump-char avy-goto-word-1)
  (:navigation/jump-search avy-goto-char-timer)
  (:navigation/bookmark-toggle bm-toggle)
  (:navigation/bookmark-next bm-next)
