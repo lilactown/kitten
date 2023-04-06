@@ -131,15 +131,15 @@
 ;; Org mode
 (reflex/bind-signals
  global
- ("C-c n a" :notes/agenda)
- ("C-c n c" :notes/capture)
- ("C-c n d" :notes/capture-daily)
- ("C-c n i" :notes/inbox)
- ("C-c n g" :notes/capture-external)
- ("C-c n k =" :roam/sync)
- ("C-c n k f" :roam/find-node)
- ("C-c n k c" :roam/capture)
- ("C-c n k d" :roam/daily))
+ ("C-c o a" :notes/agenda)
+ ("C-c o c" :notes/capture)
+ ("C-c o d" :notes/capture-daily)
+ ("C-c o i" :notes/inbox)
+ ("C-c o g" :notes/capture-external)
+ ("C-c o k =" :roam/sync)
+ ("C-c o k f" :roam/find-node)
+ ("C-c o k c" :roam/capture)
+ ("C-c o k d" :roam/daily))
 
 (reflex/bind-signals
  org-mode-map
@@ -173,5 +173,13 @@
  ;; REPL
  (:repl/goto-defun find-function)
  (:repl/doc-apropos consult-apropos))
+
+(reflex/bind-signals
+ global
+ ("C-c n j j" :navigation/jump-search)
+ ("C-c n j c" :navigation/jump-char)
+ ("C-c n b b" :navigation/bookmark-toggle)
+ ("C-c n b n" :navigation/bookmark-next)
+ ("C-c n b e" :navigation/bookmark-prev))
 
 ;;; keybinds.el ends here

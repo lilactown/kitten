@@ -7,6 +7,7 @@
 (require 'kitten-git)
 (require 'kitten-emacs)
 (require 'kitten-ui)
+(require 'kitten-navigation)
 
 ;; sync org files across devices
 (setq kitten-org-dir "~/iCloud/org/personal")
