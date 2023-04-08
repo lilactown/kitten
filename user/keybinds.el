@@ -176,10 +176,9 @@
 
 (reflex/bind-signals
  global
- ("C-c n j j" :navigation/jump-search)
- ("C-c n j c" :navigation/jump-char)
- ("C-c n b b" :navigation/bookmark-toggle)
- ("C-c n b n" :navigation/bookmark-next)
- ("C-c n b e" :navigation/bookmark-prev))
+ ("C-c n j" :navigation/jump-search)
+ ("C-c n b" :navigation/bookmark-toggle)
+ ("C-c n n" :navigation/bookmark-next)
+ ("C-c n e" :navigation/bookmark-prev))
 
 ;;; keybinds.el ends here
