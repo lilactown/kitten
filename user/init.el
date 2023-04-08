@@ -43,4 +43,6 @@
 ;; Load keybindings
 (load (expand-file-name "keybinds.el" kitten-user-dir))
 
+(load-theme 'catppuccin t)
+
 ;;; init.el ends here
