@@ -41,6 +41,8 @@
 ;;   (doom-themes-org-config))
 
 (use-package catppuccin-theme
+  :straight (catppuccin-theme
+             :fork (:host github :repo "lilactown/catppuccin-theme"))
   :init
   (setq catppuccin-flavor 'macchiato)
   (setq catppuccin-enlarge-headings nil)
