@@ -29,7 +29,9 @@
  ("e" . windmove-up)
  ("i" . windmove-right)
  ("/" . split-window-horizontally)
- ("-" . split-window-vertically))
+ ("-" . split-window-vertically)
+ ("'" . popper-toggle-latest)
+ ("." . popper-cycle))
 
 ;; Buffer management
 (bind-keys

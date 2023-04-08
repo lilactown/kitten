@@ -69,6 +69,22 @@
   (setq dashboard-banner-logo-title "Welcome to kitten, the cutest feline Emacs")
   (setq dashboard-center-content t))
 
+(use-package popper
+  ;; :ensure t ; or :straight t
+  ;; :bind (("C-`"   . popper-toggle-latest)
+  ;;        ("M-`"   . popper-cycle)
+  ;;        ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          "^\\*cider-repl"
+          help-mode
+          compilation-mode))
+  (popper-mode +1)
+  (popper-echo-mode +1))
+
 ;; Enabling desktop-save-mode will save and restore all buffers between sessions
 ;(setq desktop-restore-frames nil)
 ;(desktop-save-mode 1)
