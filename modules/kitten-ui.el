@@ -24,21 +24,31 @@
 ;; don't constantly change the width of the buffer while scrolling
 (setq display-line-numbers-grow-only t)
 
-(use-package doom-themes
+;; (use-package doom-themes
+;;   :config
+;;   ;; Global settings (defaults)
+;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+;;   (setq doom-dracula-brighter-comments t)
+;;   (setq doom-dracula-comment-bg nil)
+
+;;   ;; (load-theme 'doom-dracula t)
+
+;;   ;; Enable flashing mode-line on errors
+;;   (doom-themes-visual-bell-config)
+;;   ;; Corrects (and improves) org-mode's native fontification.
+;;   (doom-themes-org-config))
+
+(use-package catppuccin-theme
+  :init
+  (setq catppuccin-flavor 'macchiato)
+  (setq catppuccin-enlarge-headings nil)
+  (setq catppuccin-highlight-matches t)
   :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'catppuccin t))
 
-  (setq doom-dracula-brighter-comments t)
-  (setq doom-dracula-comment-bg nil)
-
-  (load-theme 'doom-dracula t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+;; (catppuccin-reload)
 
 (use-package all-the-icons
   :if (display-graphic-p))
