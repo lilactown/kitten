@@ -36,9 +36,9 @@
   (server-start))
 
 ;; Emacs with no decorations
-(setq default-frame-alist '((undecorated . t)))
-(add-to-list 'default-frame-alist '(drag-internal-border . 1))
-(add-to-list 'default-frame-alist '(internal-border-width . 5))
+;; (setq default-frame-alist '((undecorated . t)))
+;; (add-to-list 'default-frame-alist '(drag-internal-border . 1))
+;; (add-to-list 'default-frame-alist '(internal-border-width . 5))
 
 ;; Load keybindings
 (load (expand-file-name "keybinds.el" kitten-user-dir))

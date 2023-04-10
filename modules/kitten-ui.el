@@ -74,7 +74,7 @@
 ;(desktop-save-mode 1)
 
 ;; start in full screen
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; hide menu bar
 (menu-bar-mode -1)
