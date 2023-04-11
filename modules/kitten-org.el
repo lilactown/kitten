@@ -153,8 +153,8 @@
    "⭠ now ─────────────────────────────────────────────────"))
 
 (use-package org-roam
-  :straight (org-roam
-              :fork (:host github :repo "lilactown/org-roam"))
+  ;; :straight (org-roam
+  ;;             :fork (:host github :repo "lilactown/org-roam"))
   :after org
   :custom (org-roam-directory (concat (file-truename org-directory) "/roam"))
   :config (org-roam-setup)
