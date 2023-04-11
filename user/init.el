@@ -11,9 +11,21 @@
 
 ;; sync org files across devices
 (setq kitten-org-dir "~/iCloud/org/personal")
-(setq kitten-org-agenda-files
-      (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org"
-            "~/iCloud/org/work/projects.org"))
+(setq org-agenda-files
+      (append
+       (list "roam/inbox.org"
+             "roam/agenda.org"
+             "~/iCloud/org/work/gcal"
+             "~/iCloud/org/personal/projects.org"
+             (concat kitten-org-dir "/roam/areas")
+             (concat kitten-org-dir "/roam/teams")
+             (concat kitten-org-dir "/roam/people"))
+       ;; (directory-files-recursively
+       ;;  (concat kitten-org-dir "/roam/areas/")
+       ;;  "\\.org$")
+       ))
+
+;; (directory-files-recursively (concat kitten-org-dir "/roam/areas/") "\\.org$")
 
 (require 'kitten-org)
 

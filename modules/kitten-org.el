@@ -69,7 +69,7 @@
 
   ;; set up refiling behavior
   (setq org-refile-targets
-        '(("projects.org" :regexp . "\\(?:\\(?:Note\\|Task\\)s\\)")))
+        '((org-agenda-files :maxlevel . 9)))
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
 
