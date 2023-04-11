@@ -19,33 +19,11 @@
 
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-capture-templates
-       `(("i" "Inbox" entry (file "inbox.org")
+       `(("i" "Inbox" entry (file "roam/inbox.org")
           ,(concat "* TODO %?\n"
                    ":PROPERTIES:\n"
                    ":CREATED: %U\n"
-                   ":END:"))
-         ("m" "Meeting" entry (file+headline "agenda.org" "Future")
-           ,(concat "* %? :meeting:\n"
-                    "<%<%Y-%m-%d %a %H:00>>"))
-         ("n" "Note" entry  (file "notes.org")
-          ,(concat "* Note (%a)\n"
-                   ":PROPERTIES:\n"
-                   ":CREATED: %U\n"
-                   ":END:"
-                   "\n" "%?"))
-         ("u" "URL" entry (file "notes.org")
-          ,(concat "* Note (%i)\n"
-                   ":PROPERTIES:\n"
-                   ":CREATED: %U\n"
-                   ":END:"
-                   "\n" "%?"))
-         ("e" "External Content" entry (file "notes.org")
-          ,(concat "* Note\n"
-                   ":PROPERTIES:\n"
-                   ":CREATED: %U\n"
-                   ":END:"
-                   "\n" "%?"
-                   "%i"))))
+                   ":END:"))))
 
   ;; TODO
   (setq org-todo-keywords
