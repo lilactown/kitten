@@ -117,7 +117,49 @@
       '(("d" "default" entry
          "* %a\n%?"
          :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n")))))
+                            "#+title: %<%Y-%m-%d>\n"))))
+  (setq org-roam-capture-templates
+        '(("d" "default" plain
+           "%?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n")
+           :unnarrowed t)
+          ("a" "Area" plain
+           "%?"
+           :if-new (file+head "areas/${slug}.org"
+                              "#+STARTUP: content showstars indent\n#+FILETAGS: :work:area:\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+           :unnarrowed t)
+          ("p" "Project" plain
+           "%?"
+           :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+STARTUP: content showstars indent\n#+FILETAGS: :work:project:\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+           :unnarrowed t)
+          ("r" "Reference" plain "%?"
+	   :target (file+head "refs/${slug}.org"
+                              "#+TITLE: ${title}
+#+CREATED: %u
+#+FILETAGS: :work:reference:
+
+* ${title}
+:PROPERTIES:
+:Type:
+:Start:
+:Fin:
+:Creator:
+:URL:
+:END:
+
+* Actions
+
+* Key Ideas
+
+** Review
+
+** Quotes
+
+** Notes
+
+") :unnarrowed t))))
 
 
 (use-package org-roam-ui
