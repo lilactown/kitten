@@ -97,6 +97,8 @@
   (setq org-agenda-span 'day)
   (setq org-super-agenda-groups
         '(;(:auto-category t)
+          (:name "Up next"
+                 :todo "NEXT")
           (:name "Must do"
                  :and (:tag "@urgent" :tag "@important"))
           (:name "Delegate"
