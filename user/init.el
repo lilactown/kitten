@@ -19,7 +19,8 @@
              "~/iCloud/org/personal/projects.org"
              (concat kitten-org-dir "/roam/areas")
              (concat kitten-org-dir "/roam/teams")
-             (concat kitten-org-dir "/roam/projects"))))
+             (concat kitten-org-dir "/roam/projects")
+             (concat kitten-org-dir "/roam/refs"))))
 
 (require 'kitten-org)
 
