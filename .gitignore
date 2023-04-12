@@ -14,3 +14,8 @@ straight/*
 /bookmarks
 /.org-id-locations
 /user/custom.el
+/.org-generic-id-locations
+/oauth2-auto.plist
+/persist/
+/request/
+/elpa/
