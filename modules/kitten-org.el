@@ -103,7 +103,7 @@
                  :and (:tag "@urgent" :tag "@important"))
           (:name "Delegate"
                  :tag "@urgent")
-          (:name "Do later"
+          (:name "Schedule later"
                  :tag "@important")
           )))
 
@@ -126,22 +126,26 @@
            :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                               "#+title: ${title}\n")
            :unnarrowed t)
+          ("p" "Project" plain
+           "%?"
+           :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+STARTUP: content showstars indent\n#+FILETAGS: :work:project:\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+           :unnarrowed t)
           ("a" "Area" plain
            "%?"
            :if-new (file+head "areas/${slug}.org"
                               "#+STARTUP: content showstars indent\n#+FILETAGS: :work:area:\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
            :unnarrowed t)
-          ("p" "Project" plain
+          ("s" "person" plain
            "%?"
-           :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
-                              "#+STARTUP: content showstars indent\n#+FILETAGS: :work:project:\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+           :if-new (file+head "people/${slug}.org"
+                              "#+FILETAGS: :work:people:\n#+title: ${title}\n")
            :unnarrowed t)
           ("r" "Reference" plain "%?"
 	   :target (file+head "refs/${slug}.org"
                               "#+TITLE: ${title}
 #+CREATED: %u
 #+FILETAGS: :work:reference:
-
 * ${title}
 :PROPERTIES:
 :Type:
@@ -150,17 +154,10 @@
 :Creator:
 :URL:
 :END:
-
 * Actions
-
 * Key Ideas
-
-** Review
-
 ** Quotes
-
 ** Notes
-
 ") :unnarrowed t))))
 
 
