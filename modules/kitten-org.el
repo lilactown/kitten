@@ -15,7 +15,6 @@
 (use-package org
   :init
   (setq org-directory kitten-org-dir)
-  (setq org-agenda-files kitten-org-agenda-files)
 
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-capture-templates

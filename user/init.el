@@ -15,17 +15,11 @@
       (append
        (list "roam/inbox.org"
              "roam/agenda.org"
-             "~/iCloud/org/work/gcal"
+             "~/org/gcal/events.org"
              "~/iCloud/org/personal/projects.org"
              (concat kitten-org-dir "/roam/areas")
              (concat kitten-org-dir "/roam/teams")
-             (concat kitten-org-dir "/roam/people"))
-       ;; (directory-files-recursively
-       ;;  (concat kitten-org-dir "/roam/areas/")
-       ;;  "\\.org$")
-       ))
-
-;; (directory-files-recursively (concat kitten-org-dir "/roam/areas/") "\\.org$")
+             (concat kitten-org-dir "/roam/projects"))))
 
 (require 'kitten-org)
 

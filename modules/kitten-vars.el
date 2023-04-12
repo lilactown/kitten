@@ -7,9 +7,6 @@
 
 (defvar kitten-org-dir (expand-file-name "~/org")
   "Location for \"org-mode\" files.")
-(defvar kitten-org-agenda-files
-  (list "inbox.org" "agenda.org" "notes.org" "projects.org" "events.org")
-  "Files to add to \"org-agenda\".")
 
 (provide 'kitten-vars)
 
