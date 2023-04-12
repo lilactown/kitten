@@ -19,6 +19,10 @@
 (eval-after-load 'embark
   '(bind-key* "C-c ." 'embark-act))
 
+(reflex/bind-signals
+ global
+ ("M-/" :complete/at-point))
+
 ;; Window managment
 (bind-keys
  :prefix-map kitten/window

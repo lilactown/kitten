@@ -122,6 +122,16 @@
   :init
   (global-corfu-mode))
 
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block))
+
+(reflex/provide-signals
+ global
+ (:complete/at-point completion-at-point))
+
 ;; A few more useful configurations...
 (use-package emacs
   :init
