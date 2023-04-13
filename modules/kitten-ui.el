@@ -69,6 +69,9 @@
   (popper-mode +1)
   (popper-echo-mode +1))
 
+(use-package origami
+  :hook ((org-agenda-mode . origami-mode)))
+
 ;; Enabling desktop-save-mode will save and restore all buffers between sessions
 ;(setq desktop-restore-frames nil)
 ;(desktop-save-mode 1)
@@ -97,6 +100,8 @@
      (require 'ns-auto-titlebar nil t)
      (ns-auto-titlebar-mode +1))
 
+
+;; (set-frame-parameter nil 'fullscreen (when (not (frame-parameter nil 'fullscreen)) 'fullscreen))
 
 (provide 'kitten-ui)
 

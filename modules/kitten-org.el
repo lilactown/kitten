@@ -59,8 +59,7 @@
             (tags-todo "+work"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
-                        (org-agenda-prefix-format "  %i %-12:c [%e] ")))))
-          ))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")))))))
 
   ;; Copied from https://github.com/minad/org-modern
   (setq
@@ -91,20 +90,27 @@
 
 
 (use-package org-super-agenda
-  :after org
+  :bind (:map org-super-agenda-header-map
+              ("<tab>" . #'origami-toggle-node)
+              ;; fix meow up / down and leader key when cursor on headings
+              ("SPC" . nil)
+              ("e" . nil))
   :config
   (org-super-agenda-mode)
   (setq org-agenda-span 'day)
   (setq org-super-agenda-groups
-        '((:name "Up next"
-                 :todo "NEXT")
+        '((:name "Today"
+                 :time-grid t)
+          (:name "Up next"
+                 :todo "NEXT" :scheduled today)
           (:name "Must do"
                  :and (:tag "@urgent" :tag "@important"))
           (:name "Delegate"
                  :tag "@urgent")
           (:name "Schedule later"
                  :tag "@important")
-          (:auto-category t))))
+          (:name "Bugs"
+                 :category "bugs"))))
 
 
 (use-package org-roam
