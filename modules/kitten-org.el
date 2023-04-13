@@ -96,9 +96,7 @@
   (org-super-agenda-mode)
   (setq org-agenda-span 'day)
   (setq org-super-agenda-groups
-        '(;(:auto-category t)
-          (:discard (:tag "@snooze"))
-          (:name "Up next"
+        '((:name "Up next"
                  :todo "NEXT")
           (:name "Must do"
                  :and (:tag "@urgent" :tag "@important"))
@@ -106,7 +104,7 @@
                  :tag "@urgent")
           (:name "Schedule later"
                  :tag "@important")
-          )))
+          (:auto-category t))))
 
 
 (use-package org-roam
