@@ -48,6 +48,8 @@
 ;; (setq default-frame-alist '((undecorated . t)))
 (add-to-list 'default-frame-alist '(drag-internal-border . 1))
 (add-to-list 'default-frame-alist '(internal-border-width . 5))
+;; start in full screen
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Load keybindings
 (load (expand-file-name "keybinds.el" kitten-user-dir))
