@@ -138,7 +138,7 @@
 (reflex/bind-signals
  global
  ("C-c o a" :notes/agenda)
- ("C-c o c" :notes/capture)
+ ("C-c o c" :notes/calendar)
  ("C-c o d" :notes/capture-daily)
  ("C-c o i" :notes/inbox)
  ("C-c o g" :notes/capture-external)

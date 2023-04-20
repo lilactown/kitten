@@ -186,9 +186,26 @@ Hides doom-modeline while doing it."
   (org-set-tags-command arg)
   (doom-modeline-mode 1))
 
+;; calendar framework
+(use-package calfw)
+(use-package calfw-org
+  :after calfw
+  :config
+  (setq cfw:org-agenda-schedule-args nil))
+(use-package calfw-blocks
+  :after calfw
+  (defun kitten/calendar-agenda ()
+    (interactive)
+    (cfw:open-calendar-buffer
+     :contents-sources
+     (list
+      (cfw:org-create-source "medium purple"))
+     :view 'block-week)))
+
 (reflex/provide-signals
  global
  (:notes/agenda org-agenda)
+ (:notes/calendar kitten/calendar-agenda)
  (:notes/capture org-capture)
  (:notes/capture-daily org-roam-dailies-capture-today)
  (:notes/inbox org-capture-inbox)
