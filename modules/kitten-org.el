@@ -55,8 +55,10 @@
         '(("n" "All todos" ((agenda "")
                             (todo)))
           ("w" "Work"
-           ((agenda "")
-            (tags-todo "+work"
+           ((agenda ""
+                    ((org-agenda-prefix-format " %i %-12:c%?-12t%-6e% s")
+                     (org-agenda-scheduled-leaders '("" ""))))
+            (tags-todo "+work|+life"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'scheduled))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")))))))
