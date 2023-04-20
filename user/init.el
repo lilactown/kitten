@@ -19,6 +19,9 @@
       (append
        (list "roam/inbox.org"
              "roam/agenda.org"
+             "roam/areas"
+             "roam/projects"
+             "roam/refs"
              (concat work-life-org-directory "/roam/areas")
              (concat work-life-org-directory "/roam/teams")
              (concat work-life-org-directory "/roam/projects")
