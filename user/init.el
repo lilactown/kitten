@@ -16,16 +16,15 @@
 (setq work-life-org-directory "~/iCloud/org/work")
 (setq org-directory "~/Documents/org")
 (setq org-agenda-files
-      (append
-       (list "roam/inbox.org"
-             "roam/agenda.org"
-             "roam/areas"
-             "roam/projects"
-             "roam/refs"
-             (concat work-life-org-directory "/roam/areas")
-             (concat work-life-org-directory "/roam/teams")
-             (concat work-life-org-directory "/roam/projects")
-             (concat work-life-org-directory "/roam/refs"))))
+      (list "roam/inbox.org"
+            "roam/agenda.org"
+            (concat org-directory "/roam/areas")
+            (concat org-directory "/roam/projects")
+            (concat org-directory "/roam/refs")
+            (concat work-life-org-directory "/roam/areas")
+            (concat work-life-org-directory "/roam/teams")
+            (concat work-life-org-directory "/roam/projects")
+            (concat work-life-org-directory "/roam/refs")))
 
 (require 'kitten-org)
 
