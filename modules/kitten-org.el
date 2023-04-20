@@ -56,7 +56,7 @@
            ((agenda ""
                     ((org-agenda-prefix-format " %i %-12:c%?-12t%-6e% s")
                      (org-agenda-scheduled-leaders '("" ""))))
-            (todo ""
+            (tags-todo "+personal|+life"
                   ((org-agenda-skip-function
                     '(org-agenda-skip-entry-if 'scheduled))
                    (org-agenda-prefix-format "  %i %-12:c [%e] "))))
