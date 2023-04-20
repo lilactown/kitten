@@ -52,8 +52,17 @@
   (setq org-agenda-custom-commands
         '(("n" "All todos" ((agenda "")
                             (todo)))
-          ("w" "Work"
+          ("p" "Personal"
            ((agenda ""
+                    ((org-agenda-prefix-format " %i %-12:c%?-12t%-6e% s")
+                     (org-agenda-scheduled-leaders '("" ""))))
+            (todo ""
+                  ((org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'scheduled))
+                   (org-agenda-prefix-format "  %i %-12:c [%e] "))))
+           ((org-agenda-tag-filter '("-work"))))
+          ("w" "Work"
+           ((agenda "+work|+life"
                     ((org-agenda-prefix-format " %i %-12:c%?-12t%-6e% s")
                      (org-agenda-scheduled-leaders '("" ""))))
             (tags-todo "+work|+life"
