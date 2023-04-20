@@ -187,20 +187,19 @@ Hides doom-modeline while doing it."
   (doom-modeline-mode 1))
 
 ;; calendar framework
-(use-package calfw)
-(use-package calfw-org
-  :after calfw
+(use-package calfw
   :config
-  (setq cfw:org-agenda-schedule-args nil))
-(use-package calfw-blocks
-  :after calfw
-  (defun kitten/calendar-agenda ()
-    (interactive)
-    (cfw:open-calendar-buffer
-     :contents-sources
-     (list
-      (cfw:org-create-source "medium purple"))
-     :view 'block-week)))
+  (use-package calfw-org)
+  (use-package calfw-blocks
+    :config
+    (defun kitten/calendar-agenda ()
+      (interactive)
+      (cfw:open-calendar-buffer
+       :contents-sources
+       (list
+        (cfw:org-create-source "medium purple"))
+       :view 'block-week))))
+
 
 (reflex/provide-signals
  global
