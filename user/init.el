@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'use-package)
+(use-package sqlite3)
 
 (require 'kitten-git)
 (require 'kitten-emacs)
