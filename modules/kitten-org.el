@@ -14,8 +14,6 @@
 
 (use-package org
   :init
-  (setq org-directory kitten-org-dir)
-
   ;; going through https://www.labri.fr/perso/nrougier/GTD/index.html
   (setq org-capture-templates
        `(("i" "Inbox" entry (file "roam/inbox.org")
