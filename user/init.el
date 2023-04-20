@@ -4,23 +4,23 @@
 
 ;;; Code:
 
+
 (require 'kitten-git)
 (require 'kitten-emacs)
 (require 'kitten-ui)
 (require 'kitten-navigation)
 
 ;; sync org files across devices
-(setq kitten-org-dir "~/iCloud/org/personal")
+(setq work-life-org-directory "~/iCloud/org/work")
+(setq org-directory "~/Documents/org")
 (setq org-agenda-files
       (append
        (list "roam/inbox.org"
              "roam/agenda.org"
-             "~/org/gcal/events.org"
-             "~/iCloud/org/personal/projects.org"
-             (concat kitten-org-dir "/roam/areas")
-             (concat kitten-org-dir "/roam/teams")
-             (concat kitten-org-dir "/roam/projects")
-             (concat kitten-org-dir "/roam/refs"))))
+             (concat work-life-org-directory "/roam/areas")
+             (concat work-life-org-directory "/roam/teams")
+             (concat work-life-org-directory "/roam/projects")
+             (concat work-life-org-directory "/roam/refs"))))
 
 (require 'kitten-org)
 
