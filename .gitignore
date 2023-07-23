@@ -21,3 +21,4 @@ straight/*
 /elpa/
 /forge-database.sqlite
 /code-review-db-file.sqlite
+spiel/
