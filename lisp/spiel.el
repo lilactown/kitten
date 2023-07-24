@@ -10,16 +10,11 @@
   :straight (:type git :host github :repo "lilactown/openai"))
 
 (require 'markdown-mode)
+(require 'spinner)
 (require 'openai)
 (require 'openai-chat)
 
 ;; temp setup
-
-(setq openai-base-url "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo")
-(setq openai-key #'openai-key-auth-source)
-(setq openai-key-type :azure-api)
-;; (setq openai--show-log nil)
-
 
 (defcustom spiel-conversation-dir
   (expand-file-name "spiel/conversations"
@@ -90,6 +85,7 @@
                            `[((role . "user")
                               (content . ,message)
                               (time . ,(current-time)))])))
+    (spinner-start 'progress-bar)
     (openai-chat
      ;; remove `time` key
      (cl-map 'vector
@@ -105,6 +101,7 @@
                                                      .message)
                                                .message))
                                            choices))))
+           (spinner-stop)
            (spiel--display-messages topic messages)
            (spiel--write-messages
             topic
@@ -192,6 +189,18 @@
       (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
       (goto-char (point-max))
       (insert "\n" region-text))))
+
+(defun spiel-prompt-with-fenced-region (start end)
+  ""
+  (interactive "r")
+  (let ((topic (completing-read "Topic: " (spiel--list-topics)))
+        (region-text (buffer-substring-no-properties start end)))
+   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name topic))))
+      (unless prompt-buffer
+        (spiel-prompt topic))
+      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
+      (goto-char (point-max))
+      (insert "```" "\n" region-text "\n" "```"))))
 
 
 ;; (spiel-prompt "testing")
