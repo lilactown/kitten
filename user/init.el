@@ -41,11 +41,9 @@
 (require 'kitten-ocaml)
 (require 'kitten-ai)
 
-(setq org-ai-openai-api-host "amperity-engineering.openai.azure.com")
-
-(setq org-ai-openai-chat-endpoint "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-05-15")
-
-(setq org-ai-openai-completion-endpoint "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo/completions?api-version=2023-05-15")
+;; (setq org-ai-openai-api-host "amperity-engineering.openai.azure.com")
+;; (setq org-ai-openai-chat-endpoint "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-05-15")
+;; (setq org-ai-openai-completion-endpoint "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo/completions?api-version=2023-05-15")
 
 
 ;; start server to allow emacsclient usage

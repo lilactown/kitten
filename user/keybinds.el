@@ -21,7 +21,8 @@
 
 (reflex/bind-signals
  global
- ("M-/" :complete/at-point))
+ ("M-/" :complete/at-point)
+ ("M-RET" :complete/accept))
 
 ;; Window managment
 (bind-keys
@@ -186,5 +187,12 @@
  ("C-c n b" :navigation/bookmark-toggle)
  ("C-c n n" :navigation/bookmark-next)
  ("C-c n e" :navigation/bookmark-prev))
+
+
+(reflex/bind-signals
+ global
+ ("C-c a p" :ai/prompt)
+ ("C-c a r" :ai/prompt-with-region)
+ ("C-c a s" :ai/show-topic))
 
 ;;; keybinds.el ends here
