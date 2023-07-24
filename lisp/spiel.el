@@ -28,6 +28,12 @@
   :type 'string
   :group 'spiel)
 
+(defun spiel--list-topics ()
+  ""
+  (mapcar
+   (lambda (filename)
+     (replace-regexp-in-string (concat spiel-conversation-dir "/") "" filename))
+   (spiel--get-files-in-directory spiel-conversation-dir)))
 
 (defun spiel--write-messages (topic messages)
   ""
@@ -70,7 +76,11 @@
       (markdown-view-mode))))
 
 (defun spiel-show-topic (topic)
-  (interactive "sTopic: ")
+  ""
+  (interactive
+   (list (completing-read
+                      "Topic: "
+                      (spiel--list-topics))))
   (spiel--display-messages topic (spiel--read-messages topic)))
 
 (defun spiel--say (topic message)
@@ -151,27 +161,37 @@
   ""
   (concat "*Spiel prompt: " topic "*"))
 
+(defun spiel--get-files-in-directory (directory)
+  "Return a list of files in DIRECTORY."
+  (let ((files '()))
+    (dolist (file (directory-files directory t nil nil))
+      (when (file-regular-p file)
+        (setq files (cons file files))))
+    files))
+
 (defun spiel-prompt (topic)
   ""
-  (interactive "sTopic: ")
+  (interactive (list (completing-read
+                      "Topic: "
+                      (spiel--list-topics))))
   (switch-to-buffer (spiel--prompt-buffer-name topic))
   (insert "# " topic "\n\n")
   (with-silent-modifications
     (put-text-property 1 (- (point) 1) 'read-only t))
-  (spiel-compose-mode 1)
-  (markdown-mode))
+  (markdown-mode)
+  (spiel-compose-mode 1))
 
-
-(defun spiel-prompt-region (topic start end)
+(defun spiel-prompt-with-region (start end)
   ""
-  (interactive "sTopic: \nr")
-  (let ((region-text (buffer-substring-no-properties start end))
-        (prompt-buffer (get-buffer (spiel--prompt-buffer-name topic))))
-    (unless prompt-buffer
-      (spiel-prompt topic))
-    (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
-    (goto-char (point-max))
-    (insert "\n" region-text)))
+  (interactive "r")
+  (let ((topic (completing-read "Topic: " (spiel--list-topics)))
+        (region-text (buffer-substring-no-properties start end)))
+   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name topic))))
+      (unless prompt-buffer
+        (spiel-prompt topic))
+      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
+      (goto-char (point-max))
+      (insert "\n" region-text))))
 
 
 ;; (spiel-prompt "testing")
