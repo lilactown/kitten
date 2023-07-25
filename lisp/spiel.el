@@ -58,9 +58,12 @@
     (unless (file-directory-p spiel-conversation-dir)
       (make-directory spiel-conversation-dir t))
     (with-temp-file filename
-      (insert (pp messages)))))
+      (insert (with-output-to-string (pp messages))))))
 
 ;; (spiel--write-messages "foo" `[((role . "user") (content . "How are you?"))])
+
+;; (setq foo (with-output-to-string (pp '(1 2 3))))
+;; foo
 
 (defun spiel--read-messages (session)
   ""
@@ -100,16 +103,26 @@
   (let ((buf-name (concat "*Spiel: " session "*")))
     (when (get-buffer buf-name)
       (kill-buffer buf-name))
-    (with-output-to-temp-buffer buf-name
+    ;; (with-output-to-temp-buffer buf-name
+    ;;   (mapc (lambda (msg)
+    ;;           (let-alist msg
+    ;;             (princ (format "**<%s> %s:** %s\n\n"
+    ;;                            (if .time (format-time-string "%D %R" .time) "?")
+    ;;                            .role (string-trim .content)))
+    ;;             (princ "---\n\n")))
+    ;;         (reverse messages)))
+    (switch-to-buffer (generate-new-buffer buf-name))
+    ;; (with-current-buffer (generate-new-buffer buf-name)
       (mapc (lambda (msg)
               (let-alist msg
-                (princ (format "**<%s> %s:** %s\n\n"
+                (insert (format "**<%s> %s:** %s\n\n"
                                (if .time (format-time-string "%D %R" .time) "?")
                                .role (string-trim .content)))
-                (princ "---\n\n")))
-            (reverse messages)))
-    (with-current-buffer buf-name
-      (markdown-view-mode))))
+                (insert "---\n\n")))
+            (reverse messages))
+      (markdown-view-mode)
+
+      (goto-line 0)));)
 
 (defun spiel-show-session (session)
   ""
@@ -240,7 +253,6 @@
       (let ((prompt (completing-read
                      "Prompt (empty is fine): "
                      (spiel--list-prompts))))
-        (message "prompt: %s" prompt)
         (if (string-blank-p prompt)
             (funcall open-message)
           (spiel--write-messages
