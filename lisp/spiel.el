@@ -23,11 +23,26 @@
   :type 'string
   :group 'spiel)
 
-(defun spiel--list-session ()
+(defcustom spiel-prompt-dir
+  (expand-file-name "spiel/prompts"
+                    user-emacs-directory)
+  "Var containing directory to persist custom system prompts."
+  :type 'string
+  :group 'spiel)
+
+
+(defun spiel--list-sessions ()
   ""
   (mapcar
    (lambda (filename)
      (replace-regexp-in-string (concat spiel-conversation-dir "/") "" filename))
+   (spiel--get-files-in-directory spiel-conversation-dir)))
+
+(defun spiel--list-prompts ()
+  ""
+  (mapcar
+   (lambda (filename)
+     (replace-regexp-in-string (concat spiel-prompt-dir "/") "" filename))
    (spiel--get-files-in-directory spiel-conversation-dir)))
 
 (defun spiel--write-messages (session messages)
@@ -50,6 +65,25 @@
           (insert-file-contents filename)
           (read (current-buffer)))
       [])))
+
+(defun spiel--read-prompt (prompt)
+  ""
+  (let ((filename (concat spiel-prompt-dir "/" prompt)))
+    (unless (file-directory-p spiel-prompt-dir)
+      (make-directory spiel-conversation-dir t))
+    (if (file-exists-p filename)
+        (with-temp-buffer
+          (insert-file-contents filename)
+          (read (current-buffer)))
+      "")))
+
+(defun spiel--write-prompt (prompt message)
+  ""
+  (let ((filename (concat spiel-conversation-dir "/" prompt)))
+    (unless (file-directory-p spiel-conversation-dir)
+      (make-directory spiel-conversation-dir t))
+    (with-temp-file filename
+      (insert message))))
 
 ;; (spiel--read-messages "foo")
 ;; (spiel--read-messages "bar")
@@ -75,7 +109,7 @@
   (interactive
    (list (completing-read
                       "Session: "
-                      (spiel--list-session))))
+                      (spiel--list-sessions))))
   (spiel--display-messages session (spiel--read-messages session)))
 
 (defun spiel--say (session message)
@@ -108,39 +142,24 @@
             messages))))
      :parameters '(("api-version" . "2023-05-15")))))
 
-
-
 ;; (spiel--say "testing" "how are you?")
 ;; (spiel--say "testing" "pretend you're my grandma who loves me and answer the question.")
 ;; (spiel--say "testing" "Now pretend you're my son and answer the question.")
-
 
 
 (define-minor-mode spiel-compose-mode
   "Minor mode used when composing a new message to send to a *spiel* session."
   :init-value t
   :keymap
-  `((,(kbd "C-c C-c") . spiel-prompt-send-and-exit)
-    (,(kbd "C-c C-k") . spiel-prompt-kill)))
+  `((,(kbd "C-c C-c") . spiel-message-send-and-exit)
+    (,(kbd "C-c C-k") . spiel-message-kill)))
 
-;; (defun spiel--prompt-buffer-topic ()
-;;   "https://stackoverflow.com/a/66592073"
-;;   (nth
-;;    1
-;;    (assoc
-;;     "TITLE"
-;;     (org-element-map (org-element-parse-buffer 'greater-element) '(keyword)
-;;       (lambda (kwd)
-;;         (let ((data (cadr kwd)))
-;;           (list (plist-get data :key)
-;;                 (plist-get data :value))))))))
-
-(defun spiel-prompt-kill ()
+(defun spiel-message-kill ()
   ""
   (interactive)
   (kill-buffer (current-buffer)))
 
-(defun spiel-prompt-send-and-exit ()
+(defun spiel-message-send-and-exit ()
   ""
   (interactive)
   (goto-char (point-min))
@@ -154,7 +173,7 @@
     (kill-buffer)
     (spiel--say session prompt)))
 
-(defun spiel--prompt-buffer-name (session)
+(defun spiel--message-buffer-name (session)
   ""
   (concat "*Spiel prompt: " session "*"))
 
@@ -166,44 +185,44 @@
         (setq files (cons file files))))
     files))
 
-(defun spiel-prompt (session)
+(defun spiel-message (session)
   ""
   (interactive (list (completing-read
                       "Session: "
-                      (spiel--list-session))))
-  (switch-to-buffer (spiel--prompt-buffer-name session))
+                      (spiel--list-sessions))))
+  (switch-to-buffer (spiel--message-buffer-name session))
   (insert "# " session "\n\n")
   (with-silent-modifications
     (put-text-property 1 (- (point) 1) 'read-only t))
   (markdown-mode)
   (spiel-compose-mode 1))
 
-(defun spiel-prompt-with-region (start end)
+(defun spiel-message-insert-region (start end)
   ""
   (interactive "r")
-  (let ((session (completing-read "Session: " (spiel--list-session)))
+  (let ((session (completing-read "Session: " (spiel--list-sessions)))
         (region-text (buffer-substring-no-properties start end)))
-   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name session))))
+   (let ((prompt-buffer (get-buffer (spiel--message-buffer-name session))))
       (unless prompt-buffer
-        (spiel-prompt session))
-      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name session)))
+        (spiel-message session))
+      (switch-to-buffer (get-buffer (spiel--message-buffer-name session)))
       (goto-char (point-max))
       (insert "\n" region-text))))
 
-(defun spiel-prompt-with-fenced-region (start end)
+(defun spiel-message-insert-fenced-region (start end)
   ""
   (interactive "r")
-  (let ((session (completing-read "session: " (spiel--list-session)))
+  (let ((session (completing-read "session: " (spiel--list-sessions)))
         (region-text (buffer-substring-no-properties start end)))
-   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name session))))
+   (let ((prompt-buffer (get-buffer (spiel--message-buffer-name session))))
       (unless prompt-buffer
-        (spiel-prompt session))
-      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name session))
+        (spiel-message session))
+      (switch-to-buffer (get-buffer (spiel--message-buffer-name session))
       (goto-char (point-max))
       (insert "```" "\n" region-text "\n" "```")))))
 
 
-;; (spiel-prompt "testing")
+;; (spiel-message "testing")
 
 
 ;;

@@ -29,8 +29,8 @@
 
 (reflex/provide-signals
  global
- (:ai/prompt spiel-prompt)
- (:ai/prompt-with-region spiel-prompt-with-fenced-region)
+ (:ai/prompt spiel-message)
+ (:ai/prompt-with-region spiel-message-insert-fenced-region)
  (:ai/show-topic spiel-show-session))
 
 (provide 'kitten-ai)
