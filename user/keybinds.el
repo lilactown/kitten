@@ -191,8 +191,9 @@
 
 (reflex/bind-signals
  global
- ("C-c a p" :ai/prompt)
- ("C-c a r" :ai/prompt-with-region)
- ("C-c a s" :ai/show-topic))
+ ("C-c a m" :ai/message)
+ ("C-c a r" :ai/message-region)
+ ("C-c a s" :ai/session)
+ ("C-c a p" :ai/prompt))
 
 ;;; keybinds.el ends here
