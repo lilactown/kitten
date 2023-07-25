@@ -58,7 +58,7 @@
     (unless (file-directory-p spiel-conversation-dir)
       (make-directory spiel-conversation-dir t))
     (with-temp-file filename
-      (insert (with-output-to-string (pp messages))))))
+      (insert (pp-to-string messages)))))
 
 ;; (spiel--write-messages "foo" `[((role . "user") (content . "How are you?"))])
 
@@ -198,7 +198,7 @@
                (forward-line)
                (buffer-substring-no-properties (line-beginning-position) (point-max)))))
     (kill-buffer)
-    (spiel--say session msg)))
+    (spiel--say session (string-trim msg))))
 
 (defun spiel--message-buffer-name (session)
   ""
@@ -219,6 +219,10 @@
                       (spiel--list-prompts))))
   (switch-to-buffer (concat "*Spiel prompt: " prompt "*"))
   (insert "# " prompt "\n\n")
+  (with-silent-modifications
+    (put-text-property 1 (- (point) 1) 'read-only t))
+  (when-let ((content (spiel--read-prompt prompt)))
+    (insert content))
   (markdown-mode)
   (spiel-prompt-mode 1))
 
@@ -233,7 +237,7 @@
                    (forward-line)
                    (buffer-substring-no-properties (line-beginning-position)
                                                    (point-max)))))
-    (spiel--write-prompt prompt content)
+    (spiel--write-prompt prompt (string-trim content))
     (kill-buffer)))
 
 (defun spiel-message (session)
