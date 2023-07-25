@@ -23,16 +23,16 @@
   :type 'string
   :group 'spiel)
 
-(defun spiel--list-topics ()
+(defun spiel--list-session ()
   ""
   (mapcar
    (lambda (filename)
      (replace-regexp-in-string (concat spiel-conversation-dir "/") "" filename))
    (spiel--get-files-in-directory spiel-conversation-dir)))
 
-(defun spiel--write-messages (topic messages)
+(defun spiel--write-messages (session messages)
   ""
-  (let ((filename (concat spiel-conversation-dir "/" topic)))
+  (let ((filename (concat spiel-conversation-dir "/" session)))
     (unless (file-directory-p spiel-conversation-dir)
       (make-directory spiel-conversation-dir t))
     (with-temp-file filename
@@ -40,9 +40,9 @@
 
 ;; (spiel--write-messages "foo" `[((role . "user") (content . "How are you?"))])
 
-(defun spiel--read-messages (topic)
+(defun spiel--read-messages (session)
   ""
-  (let ((filename (concat spiel-conversation-dir "/" topic)))
+  (let ((filename (concat spiel-conversation-dir "/" session)))
     (unless (file-directory-p spiel-conversation-dir)
       (make-directory spiel-conversation-dir t))
     (if (file-exists-p filename)
@@ -54,9 +54,9 @@
 ;; (spiel--read-messages "foo")
 ;; (spiel--read-messages "bar")
 
-(defun spiel--display-messages (topic messages)
+(defun spiel--display-messages (session messages)
   ""
-  (let ((buf-name (concat "*Spiel: " topic "*")))
+  (let ((buf-name (concat "*Spiel: " session "*")))
     (when (get-buffer buf-name)
       (kill-buffer buf-name))
     (with-output-to-temp-buffer buf-name
@@ -70,18 +70,18 @@
     (with-current-buffer buf-name
       (markdown-view-mode))))
 
-(defun spiel-show-topic (topic)
+(defun spiel-show-session (session)
   ""
   (interactive
    (list (completing-read
-                      "Topic: "
-                      (spiel--list-topics))))
-  (spiel--display-messages topic (spiel--read-messages topic)))
+                      "Session: "
+                      (spiel--list-session))))
+  (spiel--display-messages session (spiel--read-messages session)))
 
-(defun spiel--say (topic message)
+(defun spiel--say (session message)
   ""
   (interactive)
-  (let ((messages (vconcat (spiel--read-messages topic)
+  (let ((messages (vconcat (spiel--read-messages session)
                            `[((role . "user")
                               (content . ,message)
                               (time . ,(current-time)))])))
@@ -102,9 +102,9 @@
                                                .message))
                                            choices))))
            (spinner-stop)
-           (spiel--display-messages topic messages)
+           (spiel--display-messages session messages)
            (spiel--write-messages
-            topic
+            session
             messages))))
      :parameters '(("api-version" . "2023-05-15")))))
 
@@ -117,7 +117,7 @@
 
 
 (define-minor-mode spiel-compose-mode
-  "Minor mode used when composing a new message to send to a *spiel* topic."
+  "Minor mode used when composing a new message to send to a *spiel* session."
   :init-value t
   :keymap
   `((,(kbd "C-c C-c") . spiel-prompt-send-and-exit)
@@ -145,18 +145,18 @@
   (interactive)
   (goto-char (point-min))
   (forward-char 2)
-  (let ((topic (buffer-substring-no-properties (point)
+  (let ((session (buffer-substring-no-properties (point)
                                                (line-end-position)))
         (prompt (progn
                   (forward-line)
                   (buffer-substring-no-properties (line-beginning-position) (point-max)))))
     ;; (message "%s" prompt)
     (kill-buffer)
-    (spiel--say topic prompt)))
+    (spiel--say session prompt)))
 
-(defun spiel--prompt-buffer-name (topic)
+(defun spiel--prompt-buffer-name (session)
   ""
-  (concat "*Spiel prompt: " topic "*"))
+  (concat "*Spiel prompt: " session "*"))
 
 (defun spiel--get-files-in-directory (directory)
   "Return a list of files in DIRECTORY."
@@ -166,13 +166,13 @@
         (setq files (cons file files))))
     files))
 
-(defun spiel-prompt (topic)
+(defun spiel-prompt (session)
   ""
   (interactive (list (completing-read
-                      "Topic: "
-                      (spiel--list-topics))))
-  (switch-to-buffer (spiel--prompt-buffer-name topic))
-  (insert "# " topic "\n\n")
+                      "Session: "
+                      (spiel--list-session))))
+  (switch-to-buffer (spiel--prompt-buffer-name session))
+  (insert "# " session "\n\n")
   (with-silent-modifications
     (put-text-property 1 (- (point) 1) 'read-only t))
   (markdown-mode)
@@ -181,26 +181,26 @@
 (defun spiel-prompt-with-region (start end)
   ""
   (interactive "r")
-  (let ((topic (completing-read "Topic: " (spiel--list-topics)))
+  (let ((session (completing-read "Session: " (spiel--list-session)))
         (region-text (buffer-substring-no-properties start end)))
-   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name topic))))
+   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name session))))
       (unless prompt-buffer
-        (spiel-prompt topic))
-      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
+        (spiel-prompt session))
+      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name session)))
       (goto-char (point-max))
       (insert "\n" region-text))))
 
 (defun spiel-prompt-with-fenced-region (start end)
   ""
   (interactive "r")
-  (let ((topic (completing-read "Topic: " (spiel--list-topics)))
+  (let ((session (completing-read "session: " (spiel--list-session)))
         (region-text (buffer-substring-no-properties start end)))
-   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name topic))))
+   (let ((prompt-buffer (get-buffer (spiel--prompt-buffer-name session))))
       (unless prompt-buffer
-        (spiel-prompt topic))
-      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name topic)))
+        (spiel-prompt session))
+      (switch-to-buffer (get-buffer (spiel--prompt-buffer-name session))
       (goto-char (point-max))
-      (insert "```" "\n" region-text "\n" "```"))))
+      (insert "```" "\n" region-text "\n" "```")))))
 
 
 ;; (spiel-prompt "testing")

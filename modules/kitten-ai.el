@@ -24,10 +24,14 @@
 
 (reflex/provide-signals
  copilot-mode
- (:complete/accept copilot-accept-completion)
+ (:complete/accept copilot-accept-completion))
+
+
+(reflex/provide-signals
+ global
  (:ai/prompt spiel-prompt)
  (:ai/prompt-with-region spiel-prompt-with-fenced-region)
- (:ai/show-topic spiel-show-topic))
+ (:ai/show-topic spiel-show-session))
 
 (provide 'kitten-ai)
 
