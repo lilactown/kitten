@@ -174,6 +174,8 @@
 ** Notes
 ") :unnarrowed t))))
 
+(use-package org-ql
+  :straight (org-ql :host github :repo "alphapapa/org-ql"))
 
 (use-package org-roam-ui
   :after org)
