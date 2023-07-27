@@ -127,7 +127,7 @@
   ;;             :fork (:host github :repo "lilactown/org-roam"))
   :after org
   :custom (org-roam-directory (concat (file-truename org-directory) "/roam"))
-  :config (org-roam-setup)
+  :config (org-roam-db-autosync-enable)
   :init
   (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
@@ -143,12 +143,13 @@
           ("p" "Project" plain
            "%?"
            :if-new (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
-                              "#+STARTUP: content showstars indent\n#+FILETAGS: project\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+                              "#+STARTUP: content showstars indent\n#+FILETAGS: project\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i) @easy(e) @hard(h)\n#+title: ${title}\n")
+>>>>>>> 3499a0d (update org-roam config)
            :unnarrowed t)
           ("a" "Area" plain
            "%?"
            :if-new (file+head "areas/${slug}.org"
-                              "#+STARTUP: content showstars indent\n#+FILETAGS: area\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i)\n#+title: ${title}\n")
+                              "#+STARTUP: content showstars indent\n#+FILETAGS: area\n#+PROPERTY: Effort_ALL 0 0:05 0:10 0:15 0:30 0:45 1:00 2:00 4:00\n#+TAGS: @urgent(u) @important(i) @easy(e) @hard(h)\n#+title: ${title}\n")
            :unnarrowed t)
           ("s" "Person" plain
            "%?"
