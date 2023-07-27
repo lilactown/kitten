@@ -17,9 +17,7 @@
 (require 'spiel)
 (require 'openai)
 
-(setq openai-base-url "https://amperity-engineering.openai.azure.com/openai/deployments/gpt-35-turbo")
 (setq openai-key #'openai-key-auth-source)
-(setq openai-key-type :azure-api)
 ;; (setq openai--show-log nil)
 
 (reflex/provide-signals
