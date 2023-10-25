@@ -40,7 +40,7 @@
 (require 'kitten-clojure)
 (require 'kitten-ocaml)
 (require 'kitten-ai)
-
+(require 'kitten-js)
 
 ;; start server to allow emacsclient usage
 (require 'server)
@@ -54,6 +54,8 @@
 (add-to-list 'default-frame-alist '(internal-border-width . 5))
 ;; start in full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+(setq max-lisp-eval-depth 16000)
 
 ;; Load keybindings
 (load (expand-file-name "keybinds.el" kitten-user-dir))
