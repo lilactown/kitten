@@ -6,19 +6,19 @@
 (require 'js)
 (require 'reflex)
 
-(use-package typescript-mode
-  :after tree-sitter
-  :config
-  ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
-  ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
-  (define-derived-mode typescriptreact-mode typescript-mode
-    "TypeScript TSX")
+;; (use-package typescript-mode
+;;   :after tree-sitter
+;;   :config
+;;   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
+;;   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
+;;   (define-derived-mode typescriptreact-mode typescript-mode
+;;     "TypeScript TSX")
 
-  ;; use our derived mode for tsx files
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
-  ;; by default, typescript-mode is mapped to the treesitter typescript parser
-  ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
+;;   ;; use our derived mode for tsx files
+;;   (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
+;;   ;; by default, typescript-mode is mapped to the treesitter typescript parser
+;;   ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
 
 ;; https://github.com/orzechowskid/tsi.el/
 ;; great tree-sitter-based indentation for typescript/tsx, css, json
@@ -53,23 +53,41 @@
 
 ;; (treesit-language-available-p 'javascript)
 
+(use-package typescript-ts-mode
+  :init
+  ;; Associate ts files with `typescript-ts-mode'.
+  (add-to-list 'auto-mode-alist (cons "\\.cts\\'" 'typescript-ts-mode))
+  (add-to-list 'auto-mode-alist (cons "\\.ts\\'" 'typescript-ts-mode))
+
+  (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+  :custom (typescript-ts-mode-indent-offset 2))
+
 (add-to-list
  'major-mode-remap-alist
  '(javascript-mode . js-ts-mode)
- ;;(typescript-mode . typescript-ts-mode)
  ;;(json-mode . json-ts-mode)
  )
 
 (setq js-indent-level 2)
 
-(use-package nodejs-repl)
+(use-package nodejs-repl
+  :straight (:host github :repo "lilactown/nodejs-repl.el"))
 
 (reflex/provide-signals
  js-ts-mode-map
  (:repl/jack-in nodejs-repl)
  (:repl/switch-to nodejs-repl-switch-to-repl)
  (:eval/last-sexp nodejs-repl-send-last-expression)
- (:eval/buffer nodesjs-repl-send-buffer))
+ (:eval/buffer nodejs-repl-send-buffer)
+ (:eval/region nodejs-repl-send-region))
+
+(reflex/provide-signals
+ typescript-ts-mode-map
+ (:repl/jack-in nodejs-repl)
+ (:repl/switch-to nodejs-repl-switch-to-repl)
+ (:eval/last-sexp nodejs-repl-send-last-expression)
+ (:eval/buffer nodejs-repl-send-buffer)
+ (:eval/region nodejs-repl-send-region))
 
 (provide 'kitten-js)
 
