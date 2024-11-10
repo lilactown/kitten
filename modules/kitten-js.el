@@ -73,6 +73,8 @@
 (use-package nodejs-repl
   :straight (:host github :repo "lilactown/nodejs-repl.el"))
 
+(use-package prettier)
+
 (reflex/provide-signals
  js-ts-mode-map
  (:repl/jack-in nodejs-repl)

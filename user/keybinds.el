@@ -127,7 +127,8 @@
  ("C-c l d" :lsp/find-defs)
  ("C-c l ?" :lsp/find-refs)
  ("C-c l b" :lsp/buffer-diagnostics)
- ("C-c l p" :lsp/project-diagnostics))
+ ("C-c l p" :lsp/project-diagnostics)
+ ("C-c l h" :lsp/show-docs-at-point))
 
 ;; Help in IDE
 ;; (reflex/bind-signals

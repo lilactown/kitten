@@ -5,7 +5,9 @@
 (require 'use-package)
 (require 'reflex)
 
-(use-package eglot)
+(use-package eglot
+  :config
+   (put 'typescriptreact-mode 'eglot-language-id "typescriptreact"))
 
 (reflex/provide-signals
  global
@@ -15,7 +17,8 @@
  (:lsp/find-refs xref-find-references)
  (:lsp/find-defs xref-find-definitions-other-window)
  (:lsp/buffer-diagnostics consult-flymake)
- (:lsp/project-diagnostics flymake-show-project-diagnostics))
+ (:lsp/project-diagnostics flymake-show-project-diagnostics)
+ (:lsp/show-docs-at-point eldoc))
 
 (use-package tree-sitter
   :config
