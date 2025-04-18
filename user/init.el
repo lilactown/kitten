@@ -54,6 +54,7 @@
 (add-to-list 'default-frame-alist '(internal-border-width . 5))
 ;; start in full screen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(setq frame-resize-pixelwise t)
 
 (setq max-lisp-eval-depth 16000)
 
